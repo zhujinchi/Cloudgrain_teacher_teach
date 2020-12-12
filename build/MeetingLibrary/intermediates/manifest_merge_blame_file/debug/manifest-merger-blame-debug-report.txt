@@ -1,0 +1,90 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.idcvideo.meetinglibrary"
+4    android:versionCode="5" >
+5
+6    <uses-sdk
+7        android:minSdkVersion="21"
+7-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+8        android:targetSdkVersion="26" />
+8-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+9
+10    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+10-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:5:5-79
+10-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:5:22-76
+11    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+11-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:6:5-76
+11-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:6:22-73
+12    <uses-permission android:name="android.permission.BLUETOOTH" />
+12-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:7:5-68
+12-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:7:22-65
+13    <uses-permission android:name="android.permission.VIBRATE" />
+13-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:8:5-66
+13-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:8:22-63
+14    <uses-permission android:name="android.permission.READ_CONTACTS" />
+14-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:9:5-72
+14-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:9:22-69
+15
+16    <uses-feature android:name="android.hardware.camera" /> <!-- Optional. Required for location feature -->
+16-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:10:5-60
+16-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:10:19-57
+17    <uses-feature android:name="android.hardware.camera.autofocus" />
+17-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:11:5-70
+17-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:11:19-67
+18
+19    <uses-permission android:name="android.permission.CAMERA" />
+19-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:12:5-65
+19-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:12:22-62
+20    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+20-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:13:5-71
+20-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:13:22-68
+21    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+21-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:14:5-81
+21-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:14:22-78
+22    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+22-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:15:5-80
+22-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:15:22-77
+23    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+23-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:16:5-75
+23-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:16:22-72
+24    <uses-permission android:name="android.permission.READ_CONTACTS" />
+24-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:9:5-72
+24-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:9:22-69
+25    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+25-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:18:5-75
+25-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:18:22-72
+26    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+26-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:19:5-79
+26-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:19:22-77
+27
+28    <application>
+28-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:21:5-37:19
+29        <activity
+29-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:22:9-28:50
+30            android:name="com.idcvideo.meetinglibrary.activity.MeetingActivity"
+30-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:23:13-53
+31            android:configChanges="orientation|keyboardHidden|screenSize"
+31-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:24:13-74
+32            android:exported="true"
+32-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:27:13-36
+33            android:launchMode="singleTop"
+33-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:25:13-43
+34            android:supportsPictureInPicture="true"
+34-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:26:13-52
+35            android:theme="@style/Transparent" />
+35-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:28:13-47
+36        <activity
+36-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:30:9-35:38
+37            android:name="com.idcvideo.meetinglibrary.activity.Beingcalled_activity"
+37-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:31:13-85
+38            android:configChanges="orientation|keyboardHidden|screenSize"
+38-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:32:13-74
+39            android:excludeFromRecents="true"
+39-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:33:13-46
+40            android:exported="true"
+40-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:35:13-36
+41            android:theme="@style/MeetingAppTheme" />
+41-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:34:13-51
+42    </application>
+43
+44</manifest>

@@ -1,0 +1,115 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:2:1-39:12
+	package
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:3:5-42
+		INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+		INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:2:1-39:12
+		INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:5:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:6:5-76
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:6:22-73
+uses-permission#android.permission.BLUETOOTH
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:7:5-68
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:7:22-65
+uses-permission#android.permission.VIBRATE
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:8:5-66
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:8:22-63
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:9:5-72
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:9:22-69
+uses-feature#android.hardware.camera
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:10:5-60
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:10:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:11:5-70
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:11:19-67
+uses-permission#android.permission.CAMERA
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:12:5-65
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:12:22-62
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:13:5-71
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:13:22-68
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:14:5-81
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:14:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:15:5-80
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:15:22-77
+uses-permission#android.permission.DISABLE_KEYGUARD
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:16:5-75
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:16:22-72
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:18:5-75
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:18:22-72
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:19:5-79
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:19:22-77
+application
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:21:5-37:19
+activity#com.idcvideo.meetinglibrary.activity.MeetingActivity
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:22:9-28:50
+	android:launchMode
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:25:13-43
+	android:exported
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:27:13-36
+	android:supportsPictureInPicture
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:26:13-52
+	android:configChanges
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:24:13-74
+	android:theme
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:28:13-47
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:23:13-53
+activity#com.idcvideo.meetinglibrary.activity.Beingcalled_activity
+ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:30:9-35:38
+	android:excludeFromRecents
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:33:13-46
+	android:exported
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:35:13-36
+	android:configChanges
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:32:13-74
+	android:theme
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:34:13-51
+	android:name
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:31:13-85
+uses-sdk
+INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+		INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml
+		INJECTED from /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml

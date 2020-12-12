@@ -201,12 +201,12 @@ class RegisterChooseScreen extends StatelessWidget {
   }
 
   void GotoMainScreen(BuildContext context, bool isTeacher) {
-    // if (isTeacher) {
-    //   Navigator.of(context).push(
-    //       CupertinoPageRoute(builder: (context) => BottomTeacherScreen()));
-    // } else {
-    //   Navigator.of(context).push(
-    //       CupertinoPageRoute(builder: (context) => BottomGuidanceScreen()));
-    // }
+    if (isTeacher) {
+      Navigator.of(context).push(
+          CupertinoPageRoute(builder: (context) => BottomTeacherScreen()));
+    } else {
+      Navigator.of(context).push(
+          CupertinoPageRoute(builder: (context) => BottomGuidanceScreen()));
+    }
   }
 }

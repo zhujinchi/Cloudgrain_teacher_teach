@@ -1,0 +1,79 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+
+        flavorDimensions 'Type'
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 5
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+
+        // dex突破65535的限制
+        multiDexEnabled true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            buildConfigField "String", "IDC_VERSION", "\"V3.0.14.1022\""
+        }
+
+        release {
+            minifyEnabled false
+            buildConfigField "String", "IDC_VERSION", "\"V3.0.14.1022\""
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs','../app/libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'com.android.support:appcompat-v7:26.0.2'
+    implementation 'com.android.support:gridlayout-v7:26.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:support-annotations:23.4.0'
+    implementation 'com.android.support:support-v4:26.0.2'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'com.android.support:design:26+'
+
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.41'
+    implementation 'com.tencent.bugly:crashreport:3.1.0'
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
+    implementation 'com.squareup.picasso:picasso:2.5.0'
+    implementation 'com.blankj:utilcode:1.24.2'
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    
+    implementation 'com.squareup.okhttp3:okhttp:3.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.0.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+
+    implementation(name:'HkhAndLibrary-release', ext:'aar')
+    implementation(name:'HttpLibrary-release', ext:'aar')
+    implementation(name:'CommunicateLibrary-release', ext:'aar')
+}
+
+apply from: 'toJar.gradle'

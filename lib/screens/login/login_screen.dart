@@ -204,11 +204,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context,
-        designSize: Size(1024, 768), allowFontScaling: false);
+        designSize: Size(1120, 768), allowFontScaling: false);
     return Scaffold(
         backgroundColor: Color.fromRGBO(255, 255, 255, 1),
         resizeToAvoidBottomPadding: false,
-        body: GestureDetector(
+        body: Center(
+            child: GestureDetector(
           onTap: () {
             FocusScopeNode currentFocus = FocusScope.of(context);
             if (!currentFocus.hasPrimaryFocus &&
@@ -223,7 +224,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(
                   width: 1024.w,
                   height: 786.h,
-                  color: Color.fromRGBO(255, 255, 255, 1),
+                  color: Colors.white,
+                  //color: Color.fromRGBO(255, 255, 255, 1),
                 ),
               ),
               Padding(
@@ -379,7 +381,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           )))),
             ],
           ),
-        ));
+        )));
   }
 
   void GotoMainScreen(BuildContext context, bool isTeacher) {

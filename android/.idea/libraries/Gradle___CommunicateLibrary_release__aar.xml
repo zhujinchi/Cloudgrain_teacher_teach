@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: :CommunicateLibrary-release:@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
