@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cloud_class_course_introduction_content">授课内容：</string>
+    <string name="cloud_class_course_introduction_subject">授课科目：</string>
+    <string name="cloud_class_course_introduction_teacher">授课老师：</string>
+    <string name="cloud_class_course_introduction_time">课程时间：</string>
+</resources>

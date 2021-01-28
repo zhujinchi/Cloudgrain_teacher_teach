@@ -1,3 +1,7 @@
+import 'package:Cloudgrain_teacher_teach/data/User.dart';
+import 'package:Cloudgrain_teacher_teach/screens/login/login_screen.dart';
+import 'package:Cloudgrain_teacher_teach/widgets/network/dio_manager.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -148,7 +152,30 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6.w)),
                   onPressed: () {
-                    Navigator.of(context).pop(1);
+                    return showCupertinoDialog(
+                      context: context,
+                      builder: (context) {
+                        return CupertinoAlertDialog(
+                          title: Text('确认退出'),
+                          actions: [
+                            CupertinoDialogAction(
+                              child: Text('确认'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                setDataOfLogout();
+                              },
+                            ),
+                            CupertinoDialogAction(
+                              child: Text('取消'),
+                              isDestructiveAction: true,
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                 ),
               ),
@@ -165,5 +192,44 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
       setState(() {});
       return null;
     });
+  }
+
+  void setDataOfLogout() {
+    //网络请求
+
+    DioManager.getInstance().setBaseUrl(0);
+    //
+    Map<String, dynamic> httpHeaders = {
+      'Accept': 'application/json,*/*',
+      'Content-Type': 'application/json',
+      'accessToken': User.shared().accessToken,
+    };
+
+    DioManager.getInstance().setHeaders(httpHeaders);
+    DioManager.getInstance().postNoParams("/user/logout", (result) {
+      Navigator.of(context).pushAndRemoveUntil(
+          CupertinoPageRoute(builder: (context) => LoginScreen()),
+          (route) => route == null);
+      //验证通过提交数据
+    }, (error) {
+      showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text('退出失败'),
+            content: Text(error),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text('确认'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    });
+    //
   }
 }

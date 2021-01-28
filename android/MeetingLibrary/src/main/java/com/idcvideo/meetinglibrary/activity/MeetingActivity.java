@@ -15,8 +15,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Matrix;
-import android.graphics.PixelFormat;
+import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -35,13 +34,13 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.Surface;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -50,69 +49,64 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.TypeReference;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.fvp.sip.CameraController;
 import com.fvp.sip.MyVideoDecoder;
 import com.fvp.sip.MyVideoRequest;
+import com.fvp.sip.PeopleInfoInterface;
 import com.fvp.sip.VideoFlagContacts;
 import com.fvp.sip.VideoInOut;
 import com.fvp.sip.VideoRequestCallback;
 import com.fvp.sip.WHSize;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 import com.idcmeeting.library.core.MeetingEntity;
-import com.idcmeeting.library.manager.MemberManager;
-import com.idcmeeting.library.manager.callback.MemberCallback;
 import com.idcmeeting.library.message.MessageProcessLoop;
 import com.idcmeeting.library.message.agent.CallHangupRingAgent;
-import com.idcmeeting.library.surface.CameraSurfaceTextureListener;
-import com.idcmeeting.library.surface.PeopleInfoFloatViewListener;
-import com.idcmeeting.library.unity.phoneinfo;
-import com.idcmeeting.library.utils.SharedPreferencesUtil;
-import com.idcmeeting.library.utils.SystemUtil;
-import com.idcmeeting.library.view.BlankCanvasView;
 import com.idcvideo.httplibrary.InternetInfoView.InternetInfoView;
 import com.idcvideo.httplibrary.InternetInfoView.MeetingRequestView;
 import com.idcvideo.httplibrary.TreeViewAdapter.AddressbookUserType;
 import com.idcvideo.httplibrary.TreeViewAdapter.User;
+import com.idcvideo.httplibrary.bean.Meeting;
 import com.idcvideo.httplibrary.bean.MeetingTaskItem;
+import com.idcmeeting.library.unity.phoneinfo;
+import com.idcmeeting.library.surface.CameraSurfaceTextureListener;
+import com.idcvideo.meetinglibrary.activity.bean.CloudClassStartBean;
+import com.idcvideo.meetinglibrary.activity.bean.EventMessage;
+import com.idcvideo.meetinglibrary.surface.PeopleInfoFloatViewListener;
 import com.idcvideo.httplibrary.core.HkhKeyInfo;
+import com.idcvideo.httplibrary.utils.LogUtils;
+import com.idcvideo.meetinglibrary.broadcast.MeetingBroadcast;
+import com.idcvideo.meetinglibrary.core.BridgeControl;
+import com.idcvideo.meetinglibrary.core.IdcMediaKit;
+import com.idcmeeting.library.manager.MemberManager;
+import com.idcmeeting.library.manager.callback.MemberCallback;
 import com.idcvideo.httplibrary.model.MeetingRequestModel;
 import com.idcvideo.httplibrary.presenter.ContactsInternetUrlStatus;
 import com.idcvideo.httplibrary.presenter.InternetInfoPresenter;
 import com.idcvideo.httplibrary.presenter.MeetingRequestPresenter;
 import com.idcvideo.httplibrary.presenter.MemberNicknamePresenter;
-import com.idcvideo.httplibrary.utils.LogUtils;
-import com.idcvideo.meetinglibrary.R;
-import com.idcvideo.meetinglibrary.adapter.MeetingActivityDialogAdapter;
-import com.idcvideo.meetinglibrary.adapter.MeetingActivityDialogJoinAdapter;
-import com.idcvideo.meetinglibrary.adapter.MeetingActivityDialogSecondAdapter;
-import com.idcvideo.meetinglibrary.adapter.MeetingManageDialogTitleAdapter;
-import com.idcvideo.meetinglibrary.adapter.TreeViewAdapter.AddressBookAdapter;
-import com.idcvideo.meetinglibrary.adapter.TreeViewAdapter.Node;
-import com.idcvideo.meetinglibrary.adapter.TreeViewAdapter.TreeItemClickListener;
-import com.idcvideo.meetinglibrary.adapter.basequickAdapter.MeetingTaskItemAdapter;
-import com.idcvideo.meetinglibrary.broadcast.MeetingBroadcast;
-import com.idcvideo.meetinglibrary.core.BridgeControl;
-import com.idcvideo.meetinglibrary.core.IdcMediaKit;
-import com.idcvideo.meetinglibrary.fragment.MeetingDeskFragment;
-import com.idcvideo.meetinglibrary.listener.ConfirmListener;
-import com.idcvideo.meetinglibrary.listener.ControlChangeListener;
-import com.idcvideo.meetinglibrary.listener.MeetingPersonStatusListener;
-import com.idcvideo.meetinglibrary.manager.BluetoothDevicesManager;
-import com.idcvideo.meetinglibrary.manager.NetworkManager;
 import com.idcvideo.meetinglibrary.manager.ScreenRecordManager;
-import com.idcvideo.meetinglibrary.manager.SharedModeScreenInfoManager;
 import com.idcvideo.meetinglibrary.manager.callback.ScreenRecordCallback;
-import com.idcvideo.meetinglibrary.screenshare.DesktopShareService;
 import com.idcvideo.meetinglibrary.utils.ArrayListCacheUtils;
 import com.idcvideo.meetinglibrary.utils.AudioUtils;
 import com.idcvideo.meetinglibrary.utils.ButtonUtils;
@@ -125,28 +119,61 @@ import com.idcvideo.meetinglibrary.utils.PermissionUtil;
 import com.idcvideo.meetinglibrary.utils.PinyinUserComparator;
 import com.idcvideo.meetinglibrary.utils.PopupDialog;
 import com.idcvideo.meetinglibrary.utils.RandomUtils;
+import com.idcmeeting.library.utils.SharedPreferencesUtil;
+import com.idcmeeting.library.utils.SystemUtil;
 import com.idcvideo.meetinglibrary.utils.UiUtils;
 import com.idcvideo.meetinglibrary.utils.popu.CloseMeetingPopupDialog;
 import com.idcvideo.meetinglibrary.utils.popu.DisconnectDialog;
+import com.idcvideo.meetinglibrary.view.BlankCanvasView;
+import com.idcvideo.meetinglibrary.R;
+import com.idcvideo.meetinglibrary.adapter.MeetingActivityDialogAdapter;
+import com.idcvideo.meetinglibrary.adapter.MeetingActivityDialogJoinAdapter;
+import com.idcvideo.meetinglibrary.adapter.MeetingActivityDialogSecondAdapter;
+import com.idcvideo.meetinglibrary.adapter.MeetingManageDialogTitleAdapter;
+import com.idcvideo.meetinglibrary.adapter.TreeViewAdapter.AddressBookAdapter;
+import com.idcvideo.meetinglibrary.adapter.TreeViewAdapter.Node;
+import com.idcvideo.meetinglibrary.adapter.TreeViewAdapter.TreeItemClickListener;
+import com.idcvideo.meetinglibrary.adapter.basequickAdapter.MeetingTaskItemAdapter;
+import com.idcvideo.meetinglibrary.fragment.MeetingDeskFragment;
+import com.idcvideo.meetinglibrary.listener.ConfirmListener;
+import com.idcvideo.meetinglibrary.listener.ControlChangeListener;
+import com.idcvideo.meetinglibrary.listener.MeetingPersonStatusListener;
+import com.idcvideo.meetinglibrary.manager.BluetoothDevicesManager;
+import com.idcvideo.meetinglibrary.manager.NetworkManager;
+import com.idcvideo.meetinglibrary.manager.SharedModeScreenInfoManager;
+import com.idcvideo.meetinglibrary.screenshare.DesktopShareService;
 import com.idcvideo.meetinglibrary.view.InvitationViewModel;
 import com.idcvideo.meetinglibrary.view.swipemenulistview.SwipeMenuListView;
 import com.tencent.bugly.crashreport.CrashReport;
+
+import net.lucode.hackware.magicindicator.MagicIndicator;
+import net.lucode.hackware.magicindicator.ViewPagerHelper;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.idcvideo.meetinglibrary.manager.SharedModeScreenInfoManager.SHARED_STREAM_HEADER_CONTENT_WAHT;
+import okhttp3.Response;
+import razerdp.basepopup.BasePopupWindow;
 
 import static com.idcvideo.meetinglibrary.manager.SharedModeScreenInfoManager.SHARED_STREAM_HEADER_CONTENT_WAHT;
+import static java.security.AccessController.getContext;
 
-public class MeetingActivity extends SActivity implements InternetInfoView , MeetingRequestView, View.OnClickListener {
+public class MeetingActivity extends SActivity implements InternetInfoView, MeetingRequestView, View.OnClickListener {
 
     BlankCanvasView blankCanvasView;
     ImageButton meetingTvGd;
@@ -173,6 +200,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     TextView showHandsText;
     TextView sharePositonText;
     TextView shareDesktopSponsorName;
+    TextView wihteBroadTextview;
     LinearLayout meetingTvPicture;
     LinearLayout meetingTvQh; // 切换前后摄像头按钮
     LinearLayout llEnd;
@@ -199,10 +227,11 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     SurfaceView meetingSfBd;
 
     private static final String TAG = "MeetingActivity";
+    private static final int Receive_Hostname_WHAT = 5982;
     private static final int PHONE_CALL_RECIVER_AND_HANG_DOEN = 5984;
     private static final int APPLY_FOR_MEETINGCODE = 5983;
-    public  static final int VIDEO_STREAM_HEADER_CONTENT_WAHT = 519618;
-    public  static final int VIDEO_STREAM_HEADER_MERGE_MODE_WAHT = 519619;
+    public static final int VIDEO_STREAM_HEADER_CONTENT_WAHT = 519618;
+    public static final int VIDEO_STREAM_HEADER_MERGE_MODE_WAHT = 519619;
     private static final int REQUEST_MEDIA_PROJECTION = 1;
     private final static long MULTIPLE = 10000000;//三种通讯录的最大容量
     private static boolean isActive;  // 全局变量
@@ -226,22 +255,23 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     private boolean needMyVideoOpen = false;  // false:发送视频 true：停止发送
     private boolean needMyMicOpen = false;  // false:发送声音 true：停止发送
     private boolean isTransferPersonPermission;  // 是否转发 true:转发人员；false:非转发人员
-    public  boolean isMeetingShared = false;  // 是否开启共享
+    public boolean isMeetingShared = false;  // 是否开启共享
     private boolean isMeetingPadShare;
     private boolean meetingFrameCaptivate = false;
-    private int     iTransferType;  // 转发状态
-    private int     netMeetingType;  // 会议类型：3-点对点
-    private int     videowidch;
-    private int     videoheight;
-    private int     taskPageNo = 1;
-    private int     tapDebugModeTimes = 0;
-    private int     realScreenStatus;  // 库返回视频的真实分屏位置
-    private int     screenWidth;
-    private int     screenHeight;
-    private int     netMeetingId = -1;
-    private int     totalNumber;
-    private int     mCurrentCounter;
-    private int     contectTime = 0;
+    private int iTransferType;  // 转发状态
+    private int netMeetingType;  // 会议类型：3-点对点
+    private int videowidch;
+    private int videoheight;
+    private int taskPageNo = 1;
+    private int tapDebugModeTimes = 0;
+    private int realScreenStatus;  // 库返回视频的真实分屏位置
+    private int screenWidth;
+    private int screenHeight;
+    private int netMeetingId = -1;
+    private int totalNumber;
+    private int mCurrentCounter;
+    private int contectTime = 0;
+    private long lastTimeMillis;
 
     private AlertDialog inviteMemberDialog;
     private AlertDialog alertjoinDialog;  // 参加会议的dialog
@@ -251,7 +281,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     private ArrayList<User> enterpriseList = new ArrayList<User>();
     private AddressBookAdapter<User> meetingContactsAdapter = null;
     private BluetoothDevicesManager mBluetoothDevicesManager;
-    private com.fvp.sip.CameraController CameraController;
+    private CameraController CameraController;
     private CameraSurfaceTextureListener mCameraSurfaceTextureListener;
     private EditText detailEditText;
     private FragmentTransaction fragmentTransaction;
@@ -320,8 +350,33 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     private SwipeMenuListView manageListview;
     private SwipeRefreshLayout swipeRefreshLayout;
     private TextureView cameraPreviewTexture;
-    public  VideoInOut videoInOut;
+    public VideoInOut videoInOut;
     private View manageDialogView;
+    private MagicIndicator cloudClassGoToMagic;
+    private ViewPager cloudClassGoToViewPager;
+    private List<Fragment> fragments = new ArrayList<>();
+    private List<String> mDataList = new ArrayList<>();
+    private MyViewPageAdapter myViewPageAdapter;
+    private ToggleButton toggleButton1;
+    private ToggleButton toggleButton2;
+    private ToggleButton toggleButton3;
+    private TextView num;
+    private ImageView exitView;
+    private ImageView cameraOpenView;
+    private ImageView sunView;
+    private ImageView recordView;
+    private ImageView boardView;
+    private ImageView backView;
+    private TextView finishView;
+    private CloudClassStartBean mCloudClassPayBean;
+    private RelativeLayout gradeView;
+    private Button shareView;
+    private ScreenPopupWindowAdapter cloudClassScreenPopupWindowAdapter;
+    private static final int SCREEN_DATA = 3490;
+    private static final int SCREEN_DATA_show_msg = 3491;
+    private static final int SCREEN_DATA_student_show_msg = 3492;
+    private String studentId;
+    private EditText editText;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -330,11 +385,11 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);  // 华为手机偶现竖屏，添加横屏
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         Resources res = getResources();
         Drawable drawable = res.getDrawable(R.drawable.background_meeting);
         this.getWindow().setBackgroundDrawable(drawable);
-        setContentView(R.layout.activity_meeting2);
+        setContentView(R.layout.activity_meeting3);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
         getWindow().addFlags(WindowManager.LayoutParams.
@@ -428,7 +483,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             e.printStackTrace();
         }
 
-        mPeopleInfoFloatViewListener = new PeopleInfoFloatViewListener();
+        mPeopleInfoFloatViewListener = new PeopleInfoFloatViewListener(uTitleStr);
         mCameraSurfaceTextureListener.setPositionLayout(mLocatePreviewLayout);
         touchinit();
         try {
@@ -459,7 +514,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             videoheight = 720;
         }
         backinit();
-        getMeetingType(3);
+        updateMeetingSurfaceView(videowidch, videoheight, true);
         int[] locations = new int[2];
         meetingSfYd.getLocationInWindow(locations);
         LogUtils.d("TransformOffset", "float x =" + locations[0]);
@@ -476,17 +531,93 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         if (NetworkManager.isMobileConnected()) {
             UiUtils.showToastLong(getResources().getString(R.string.get_meeting_type_mobile_hint));
         }
+
+        getMeetingType(3);
         Log.i(TAG, "on create success.");
+        //布局修改
+        viewUpdata();
     }
 
-    private void updateMeetingSurfaceView(int videowidch, int videoheight ,boolean isP2P) {
+    private void viewUpdata() {
+        mCloudClassPayBean = (CloudClassStartBean) SPBeanUtils.getObject(MeetingActivity.this, "mDataCloudClassMeeting");
+        mDataList.clear();
+        mDataList.add("班级详情");
+        mDataList.add("课程简介");
+        mDataList.add("交流区");
+        mDataList.add("作业中心");
+        fragments.clear();
+        for (int i = 0; i < mDataList.size(); i++) {
+            if (i == 0) {
+                fragments.add(CloudClassAttendDetailsFragment.newInstance(mCloudClassPayBean));
+            } else if (i == 1) {
+                fragments.add(CloudClassGoToClassFragment.newInstance(mCloudClassPayBean));
+            } else if (i == 2) {
+                fragments.add(CloudClassAttendExchangeFragment.newInstance(mCloudClassPayBean));
+            } else {
+                fragments.add(new CloudClassAttendSubmitJobFragment());
+            }
+
+        }
+        myViewPageAdapter = new MyViewPageAdapter(getSupportFragmentManager(), fragments);
+        cloudClassGoToViewPager.setAdapter(myViewPageAdapter);
+        CommonNavigator commonNavigator = new CommonNavigator(this);
+        commonNavigator.setLeftPadding(82);
+        commonNavigator.setRightPadding(82);
+        commonNavigator.setAdjustMode(true);
+        commonNavigator.setAdapter(new CommonNavigatorAdapter() {
+
+            @Override
+            public int getCount() {
+                return mDataList == null ? 0 : mDataList.size();
+            }
+
+            @Override
+            public IPagerTitleView getTitleView(Context context, final int index) {
+                ColorTransitionPagerTitleView colorTransitionPagerTitleView = new ColorTransitionPagerTitleView(context);
+                colorTransitionPagerTitleView.setNormalColor(Color.parseColor("#ffffff"));
+                colorTransitionPagerTitleView.setSelectedColor(Color.parseColor("#ffffff"));
+                colorTransitionPagerTitleView.setText(mDataList.get(index));
+                colorTransitionPagerTitleView.setOnClickListener(view -> cloudClassGoToViewPager.setCurrentItem(index));
+                return colorTransitionPagerTitleView;
+            }
+
+            @Override
+            public IPagerIndicator getIndicator(Context context) {
+                LinePagerIndicator indicator = new LinePagerIndicator(context);
+                indicator.setColors(Color.parseColor("#ffffff"));
+                indicator.setMode(LinePagerIndicator.MODE_WRAP_CONTENT);
+                return indicator;
+            }
+        });
+
+        //设置viewpage页面发生改变,指示器发生改变
+        cloudClassGoToViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        //设置viewpage的adapter
+        cloudClassGoToMagic.setNavigator(commonNavigator);
+        ViewPagerHelper.bind(cloudClassGoToMagic, cloudClassGoToViewPager);
+    }
+
+    private void updateMeetingSurfaceView(int videowidch, int videoheight, boolean isP2P) {
         if (screenWidth == 0 && screenHeight == 0) {
             LogUtils.i(TAG, "updateMeetingSurfaceView method screenWidth = 0 screenHeight = 0");
             return;
         }
-        MeetingEntity.getInstance().setScreenWidth(screenHeight);
-        MeetingEntity.getInstance().setScreenHeight(screenWidth);
-        /*float scale_width = screenWidth / videowidch;  // 获取拉伸的宽度比例
+        LogUtils.i(TAG, "updateMeetingSurfaceView videowidch" + videowidch + " videoheight" + videoheight + " screenWidth" + screenWidth + " screenHeight" + screenHeight);
+        float scale_width = screenWidth / videowidch;  // 获取拉伸的宽度比例
         float scale_hight = screenHeight / videoheight;  // 获取拉伸高度的比例
         if (scale_width > scale_hight) {  // 保持高度不变进行宽度拉伸
             int mVideoWidth = (int) (videowidch * scale_width);
@@ -494,10 +625,12 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
 
             LogUtils.e("updateMeetingSurfaceView", "scale_width>scale_hight      mVideoWidth =" + mVideoWidth + " , screenHeight =" + screenHeight);
             params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-            *//*meetingSfYd.setLayoutParams(params);
-            meetingSfYd.requestLayout();
-            blankCanvasView.setLayoutParams(params);
-            meetingDeskFragment.setLayoutParams(params);*//*
+                /*
+                    meetingSfYd.setLayoutParams(params);
+                    meetingSfYd.requestLayout();
+                    blankCanvasView.setLayoutParams(params);
+                    meetingDeskFragment.setLayoutParams(params);
+                */
             videoRl.setLayoutParams(params);
         } else {
             int mVideoWidth = (int) (videowidch * scale_hight);
@@ -507,12 +640,14 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             MeetingEntity.getInstance().setScreenHeight(screenHeight);
             LogUtils.e("updateMeetingSurfaceView", "scale_width < scale_hight    " +
                     "  mVideoWidth =" + mVideoWidth + " , screenHeight =" + screenHeight);
-            *//*meetingSfYd.setLayoutParams(params);
-            meetingSfYd.requestLayout();
-            blankCanvasView.setLayoutParams(params);
-            meetingDeskFragment.setLayoutParams(params);*//*
+                /*
+                    meetingSfYd.setLayoutParams(params);
+                    meetingSfYd.requestLayout();
+                    blankCanvasView.setLayoutParams(params);
+                    meetingDeskFragment.setLayoutParams(params);
+                */
             videoRl.setLayoutParams(params);
-        }*/
+        }
     }
 
     private void initCameraOrAudioMethod() {
@@ -520,18 +655,19 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             StartSendVoice();
             BridgeControl.ConferenceMute(1);
         } else {
-            if (meetingTvJyImage != null) {
-                meetingTvJyImage.setImageResource(R.drawable.meeting_jingyin);
+            if (sunView != null) {
+                sunView.setImageResource(R.mipmap.sp_icon_microphone_small_default);
             }
             jytimes = false;
         }
         if (SharedPreferencesUtil.getsInstance().getBoolean(VideoFlagContacts.JOIN_MEETING_CLOSE_CAMERA_TAG, false)) {
-            cameraIv.setImageResource(R.drawable.meeting_icon_camera_close);
+            cameraOpenView.setImageResource(R.mipmap.sp_icon_camera_pre);
             BridgeControl.ConferenceCameraSend(1);
             BridgeControl.ConferenceCamera(1);
             mCameraSurfaceTextureListener.setStopSpfs(true);
             left1 = true;
         } else {
+            cameraOpenView.setImageResource(R.mipmap.sp_icon_camera_default);
             BridgeControl.ConferenceCameraSend(0);
             BridgeControl.ConferenceCamera(0);
             mCameraSurfaceTextureListener.setStopSpfs(false);
@@ -543,12 +679,13 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     protected void onStart() {
         super.onStart();
         Log.i(TAG, "on start");
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);  // 强制为横屏
         if (GlobalUtils.getLocalMeetingStatus(true)) {
             if (NetworkManager.isConnected()) {
                 Log.d(TAG, "FVPhone Get Detail(08), number is " + meetingNumber);
                 BridgeControl.ConferenceDetail();
             } else {
-                Log.w(TAG,"No network may layout wrong.");
+                Log.w(TAG, "No network may layout wrong.");
             }
             LogUtils.i(TAG, "The phone is sharing desk and get meeting details");
         }
@@ -561,47 +698,8 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         String msg = null;
         if (orientation == 1) {
             msg = "port";
-            if (netMeetingType == 3) {
-                if (
-                    !(getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-                            || getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
-                            || getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
-                            || getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT) ){
-                    Log.i(TAG, "config change protrait h " + screenHeight + " w " + screenWidth);
-                    Matrix transform = new Matrix();
-                    float sx = (float) (screenWidth / (screenHeight + 0.00001));
-                    float sy = (float) (screenHeight / (screenWidth + 0.00001));
-                    float px = (float) (screenWidth / 2.0);
-                    float py = (float) (screenHeight / 2.0);
-                    transform.preScale(sy, sx, px, py);
-                    transform.postRotate(90, px, py);
-                    meetingSfYd.setTransform(transform);
-                    if (mCameraSurfaceTextureListener != null) {
-                        mCameraSurfaceTextureListener.setP2P(true ,true);
-                    }
-                    cameraPreviewTexture.setTransform(new Matrix());
-                }
-            }
         } else if (orientation == 2) {
             msg = "land";
-            if (netMeetingType == 3) {
-                if (
-                    !(getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                            || getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
-                            || getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-                            || getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE) ){
-                    Log.i(TAG, "config change landspace h " + screenHeight + " w " + screenWidth);
-                    Matrix transform = new Matrix();
-                    meetingSfYd.setTransform(transform);
-                    if (mCameraSurfaceTextureListener != null) {
-                        mCameraSurfaceTextureListener.setP2P(true ,false);
-                    }
-                    Matrix matrix = new Matrix();
-                    matrix.preRotate(-90 ,320 ,180);
-                    matrix.postScale(1.7777f ,0.5625f ,320 ,180 );
-                    cameraPreviewTexture.setTransform(matrix);
-                }
-            }
         }
         Log.i(TAG, "onConfigurationChanged orientation " + msg);
         //newConfig.setLayoutDirection();
@@ -663,38 +761,19 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         netMeetingType = sNetMeetingType;
 
         if (netMeetingType == 3) { //点对点呼叫
-            Log.i(TAG,"signle p2p in " + getRequestedOrientation() + " ,config " + getResources().getConfiguration().orientation);
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            updateMeetingSurfaceView(videowidch ,videoheight, true);
-            Matrix transform = new Matrix();
-            float sx = (float) (screenWidth / (screenHeight + 0.00001));
-            float sy = (float) (screenHeight / (screenWidth + 0.00001));
-            float px = (float) (screenWidth / 2.0);
-            float py = (float) (screenHeight / 2.0);
-            transform.preScale(sy, sx, px, py);
-            transform.postRotate(90, px, py);
-            meetingSfYd.setTransform(transform);
+            Log.i(TAG, "signle p2p in " + getRequestedOrientation() + " ,config " + getResources().getConfiguration().orientation);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+            updateMeetingSurfaceView(videowidch, videoheight, true);
             if (mCameraSurfaceTextureListener != null) {
-                mCameraSurfaceTextureListener.setP2P(true ,true);
-                Log.i(TAG,"signle p2p set protrait true ");
+                mCameraSurfaceTextureListener.setP2P(true, false);
+                Log.i(TAG, "signle p2p set protrait false ");
             }
+
         } else { //会议
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);  // 强制为横屏
             if (mCameraSurfaceTextureListener != null) {
-                mCameraSurfaceTextureListener.setP2P(false ,false);
+                mCameraSurfaceTextureListener.setP2P(false, false);
             }
-            LogUtils.e(TAG, "netMeetingType 625 netMeetingType=" + netMeetingType);  // 是会议
-            Matrix matrix = meetingSfYd.getMatrix();
-            matrix.reset();
-            meetingSfYd.setTransform(matrix);
-            /*Matrix meetingMatrix = cameraPreviewTexture.getMatrix();
-            meetingMatrix.reset();
-            cameraPreviewTexture.setTransform(meetingMatrix);*/
-            if (mCameraSurfaceTextureListener != null) {
-                LogUtils.d(TAG, "CameraSurfaceTextureListener rebind not null");
-                mCameraSurfaceTextureListener.onRebindCameraPreview(MeetingActivity.this);
-            }
-            updateMeetingSurfaceView(videowidch ,videoheight , false);
+            updateMeetingSurfaceView(videowidch, videoheight, false);
         }
         ShowAllWidgt();
     }
@@ -812,9 +891,16 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             @Override
             public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
                 if (videoInOut == null) {
-                    Log.i(TAG ,"new video in out 2");
+                    Log.i(TAG, "new video in out 2");
                     videoInOut = new VideoInOut(MeetingActivity.this);
-                    videoInOut.setPeopleInfoFloatViewListener(mPeopleInfoFloatViewListener);
+                    videoInOut.setPeopleInfoFloatViewListener(new PeopleInfoInterface() {
+                        @Override
+                        public void CheckMeetSrcFloatFlag(byte[] iMeetScrFlag, int iMeetScrFlagLength, int iMergeMode, int shareMode) {
+                            if (mPeopleInfoFloatViewListener != null) {
+                                mPeopleInfoFloatViewListener.CheckMeetSrcFloatFlag(iMeetScrFlag, iMeetScrFlagLength, iMergeMode, shareMode);
+                            }
+                        }
+                    });
                     videoInOut.setCameraSurfaceTextureListener(mCameraSurfaceTextureListener);
                     mCameraSurfaceTextureListener.setVideoInOut(videoInOut);
                 }
@@ -827,7 +913,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                     e.printStackTrace();
                 }
                 if (myVideoRequest == null) {
-                    myVideoRequest = new MyVideoRequest(MeetingActivity.this, MVQback ,videoInOut);
+                    myVideoRequest = new MyVideoRequest(MeetingActivity.this, MVQback, videoInOut);
                     myVideoRequest.setHandler(mMeetingVideoDateHandler);
                 }
                 WHSize whSize;
@@ -874,14 +960,16 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             }
 
             @Override
-            public void onSurfaceTextureUpdated(SurfaceTexture surface) {}
+            public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+            }
         });
     }
 
     /**
      * 打开本地视频画面与移动本地画面方法
-     * @param videowidth    视频画面的宽
-     * @param videoheight   视频画面的高
+     *
+     * @param videowidth  视频画面的宽
+     * @param videoheight 视频画面的高
      */
     private void openLocalVideoAndMoveVideoMethod(int videowidth, int videoheight) {
         mCameraSurfaceTextureListener.setmActivityContext(this);
@@ -958,6 +1046,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         getMeetingTask(taskPageNo);
         subscribeFragmentAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             private String executorUsername;
+
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent = new Intent(MeetingActivity.this, MeetingTaskItemActivity.class);
@@ -1012,13 +1101,13 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         if (meetingRequestPresenter == null) {
             meetingRequestPresenter = new MeetingRequestPresenter(MeetingActivity.this);
         }
-        meetingRequestPresenter.selectTaskEnqueue(netMeetingId ,pageNo);
+        meetingRequestPresenter.selectTaskEnqueue(netMeetingId, pageNo);
     }
 
     /**
      * 会议信息弹窗。如有资源文件空指针，需要解决渠道定制造成的代码冲突。
      * created by shike , 20200512
-     * */
+     */
     private void MeetingDetailDialog() {
         AlertDialog.Builder customizeDialog =
                 new AlertDialog.Builder(MeetingActivity.this);
@@ -1055,7 +1144,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                     stringBuilder.append(getString(R.string.meeting_theme_mh)).append(TextUtils.isEmpty(meetingDetailTopic) ? getString(R.string.none) : meetingDetailTopic).append("\r\n");
                     stringBuilder.append(getString(R.string.meeting_activity_detail_come_room_passwd)).append(TextUtils.isEmpty(meetingDetailShowPwd) ? getString(R.string.none) : meetingDetailShowPwd).append("\r\n");
                     stringBuilder.append(getString(R.string.admin_pwd_number)).append(TextUtils.isEmpty(meetingDetailAdminPassword) ? getString(R.string.none) : meetingDetailAdminPassword).append("\r\n");
-                    ClipData clipData = ClipData.newPlainText(stringBuilder.toString(),stringBuilder.toString());
+                    ClipData clipData = ClipData.newPlainText(stringBuilder.toString(), stringBuilder.toString());
                     clipboardManager.setPrimaryClip(clipData);
                     UiUtils.showToast(getString(R.string.meeting_activity_detail_success));
                 } else {
@@ -1069,8 +1158,8 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         meetingDetailDialogPasswd.setText(TextUtils.isEmpty(meetingDetailShowPwd) ? getString(R.string.none) : meetingDetailShowPwd);
         meetingDetailDialogAdminPasswd.setText(TextUtils.isEmpty(meetingDetailAdminPassword) ? getString(R.string.none) : meetingDetailAdminPassword);
         meetingDetailDialogAdminName.setText(TextUtils.isEmpty(mHostMan) ? getString(R.string.none) : mHostMan);
-        if (TextUtils.isEmpty(meetingDetailUserName) ||TextUtils.isEmpty(meetingDetailAccessCode) || TextUtils.isEmpty(meetingDetailTopic)
-                ||TextUtils.isEmpty(meetingDetailShowPwd) || TextUtils.isEmpty(meetingDetailAdminPassword) ||TextUtils.isEmpty(meetingDetailUserName)) {
+        if (TextUtils.isEmpty(meetingDetailUserName) || TextUtils.isEmpty(meetingDetailAccessCode) || TextUtils.isEmpty(meetingDetailTopic)
+                || TextUtils.isEmpty(meetingDetailShowPwd) || TextUtils.isEmpty(meetingDetailAdminPassword) || TextUtils.isEmpty(meetingDetailUserName)) {
             requestMeetingDetail();
         }
         Window w = alertDialog.getWindow();
@@ -1109,10 +1198,10 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             detailEditText.setClickable(true);
             btn.setEnabled(true);
             btn.setVisibility(View.VISIBLE);
+            detailEditText.setOnClickListener(null);
         } else {
             detailEditText.setFocusable(false);
             detailEditText.setFocusableInTouchMode(false);
-            detailEditText.setClickable(false);
             btn.setEnabled(false);
             btn.setVisibility(View.GONE);
         }
@@ -1134,7 +1223,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         closeButtom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(alertDialog != null) {
+                if (alertDialog != null) {
                     alertDialog.dismiss();
                 }
             }
@@ -1155,7 +1244,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 if (meetingRequestPresenter == null) {
                     meetingRequestPresenter = new MeetingRequestPresenter(MeetingActivity.this);
                 }
-                meetingRequestPresenter.editSummary(netMeetingId ,trim ,summaryId);
+                meetingRequestPresenter.editSummary(netMeetingId, trim, summaryId);
                 alertDialog.dismiss();
             }
         });
@@ -1287,7 +1376,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             @Override
             public void onClick(View v) {
                 BridgeControl.ConferenceClose();
-                BridgeControl.CallHangUp();
+                BridgeControl.CallHangUp(6);
                 releaseCamera();
                 closeMeetingRoom();
                 finish();
@@ -1317,14 +1406,14 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 okBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        BridgeControl.ConferenceHost(oldController ,newController);
+                        BridgeControl.ConferenceHost(oldController, newController);
                         setMoreAndShareLayoutGone();
                         alertDialog.dismiss();
                     }
                 });
                 alertDialog.show();
                 Window w = alertDialog.getWindow();
-                if(w != null) {
+                if (w != null) {
                     w.setGravity(Gravity.CENTER);
                     WindowManager.LayoutParams layoutParams = w.getAttributes();
                     WindowManager m = getWindowManager();
@@ -1342,7 +1431,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 if (meetingRequestPresenter == null) {
                     meetingRequestPresenter = new MeetingRequestPresenter(MeetingActivity.this);
                 }
-                meetingRequestPresenter.inviteEnqueue(detail ,meetingPersonNumber ,meetingNumber);
+                meetingRequestPresenter.inviteEnqueue(detail, meetingPersonNumber, meetingNumber);
             }
         });
 
@@ -1440,7 +1529,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         if (meetingRequestPresenter == null) {
             meetingRequestPresenter = new MeetingRequestPresenter(this);
         }
-        meetingRequestPresenter.meetingLockEnqueue(flag ,netMeetingId);
+        meetingRequestPresenter.meetingLockEnqueue(flag, netMeetingId);
     }
 
     // 邀请按钮
@@ -1467,7 +1556,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                         LogUtils.d("share", "No Activity Set");
                         return;
                     }
-                    String packageName =  ActivityEntity.getInstance().getAppSharedActivityType().getName();
+                    String packageName = ActivityEntity.getInstance().getAppSharedActivityType().getName();
                     Log.i(TAG, "share app is " + packageName);
                     Intent intent = new Intent();
                     intent.setComponent(new ComponentName(MeetingActivity.this, packageName));
@@ -1478,11 +1567,11 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                     startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e(TAG ,"share app info failed.");
+                    Log.e(TAG, "share app info failed.");
                 }
             }
         });
-
+        share.setVisibility(View.GONE);
         TextView Invite2 = dialogView.findViewById(R.id.meetingdialog_seconde_yqyh);  // 邀请用户
         manageListview = dialogView.findViewById(R.id.meetingdialog_seconde_list);
         tvyq.setOnClickListener(new View.OnClickListener() {  // 邀请按钮
@@ -1504,7 +1593,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 if (meetingRequestPresenter == null) {
                     meetingRequestPresenter = new MeetingRequestPresenter(MeetingActivity.this);
                 }
-                meetingRequestPresenter.inviteEnqueue(detail ,secondList ,meetingNumber);
+                meetingRequestPresenter.inviteEnqueue(detail, secondList, meetingNumber);
                 inviteMemberDialog.dismiss();
             }
         });
@@ -1551,7 +1640,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 if (TextUtils.isEmpty(msg)) {
                     UiUtils.showToast(getString(R.string.toast_23));
                     return;
-                } else if (TextUtils.equals(msg,"dismiss")){
+                } else if (TextUtils.equals(msg, "dismiss")) {
                     alertDialog.dismiss();
                     return;
                 }
@@ -1681,7 +1770,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             favoriteList = arrayListCacheUtils.loadListCache(MeetingActivity.this, "json");
         } catch (Exception e) {
             favoriteList.clear();
-            favoriteList.add(new User(0, 0, getString(R.string.my_fav), 0 , AddressbookUserType.FavoriteContact));
+            favoriteList.add(new User(0, 0, getString(R.string.my_fav), 0, AddressbookUserType.FavoriteContact));
         }
         if (favoriteList == null) {
             favoriteList = new ArrayList<User>();
@@ -1692,13 +1781,13 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             }
         }
         if (favoriteList.size() == 0) {
-            favoriteList.add(new User(0, 0, getString(R.string.my_fav), 0 , AddressbookUserType.FavoriteContact));
+            favoriteList.add(new User(0, 0, getString(R.string.my_fav), 0, AddressbookUserType.FavoriteContact));
         }
         if (mobilePhoenList != null) {
             mobilePhoenList.clear();
         }
         mobilePhoenList = new ArrayList<User>();
-        mobilePhoenList.add(new User(MULTIPLE, MULTIPLE, getString(R.string.phone_cotacts), 0 , AddressbookUserType.MobileContact));
+        mobilePhoenList.add(new User(MULTIPLE, MULTIPLE, getString(R.string.phone_cotacts), 0, AddressbookUserType.MobileContact));
         GetPhoneNumberFromMobile getPhoneNumberFromMobile = new GetPhoneNumberFromMobile();
         List<phoneinfo> LocalUerInfoList = getPhoneNumberFromMobile.getPhoneNumberFromMobile(MeetingActivity.this);
         if (LocalUerInfoList != null && LocalUerInfoList.size() > 0) {
@@ -1708,7 +1797,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 if (name == null || number == null) {
                     continue;
                 }
-                mobilePhoenList.add(new User((long) (MULTIPLE + i + 1), MULTIPLE, name, 1, LocalUerInfoList.get(i) , AddressbookUserType.MobileContact));
+                mobilePhoenList.add(new User((long) (MULTIPLE + i + 1), MULTIPLE, name, 1, LocalUerInfoList.get(i), AddressbookUserType.MobileContact));
             }
         }
         if (enterpriseList != null) {
@@ -1730,13 +1819,13 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             pinyinUserComparator = new PinyinUserComparator();
         }
         try {
-            Collections.sort(favoriteList ,pinyinUserComparator);
-            Collections.sort(mobilePhoenList ,pinyinUserComparator);
+            Collections.sort(favoriteList, pinyinUserComparator);
+            Collections.sort(mobilePhoenList, pinyinUserComparator);
         } catch (Exception e) {
             e.printStackTrace();
             CrashReport.postCatchedException(e);
         }
-        meetingContactsAdapter.setDataSourceLists(favoriteList ,mobilePhoenList ,enterpriseList);
+        meetingContactsAdapter.setDataSourceLists(favoriteList, mobilePhoenList, enterpriseList);
         meetingContactsAdapter.closedAllNode(false);
         meetingContactsRecyclerView.setAdapter(meetingContactsAdapter);
         meetingContactsAdapter.notifyDataSetChanged();
@@ -1745,11 +1834,12 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
 
     /**
      * 企业通讯录点击联系人
+     *
      * @param node 选中的RecyclerView节点，添加至选中list。
      */
     public void afterTouchRecyclerViewItem(Node node) {
         if (node == null || node.getUserPhoneInfo() == null || node.getUserPhoneInfo().getNumber() == null
-                || enterpriseList == null || enterpriseList.size() == 0) {
+                || enterpriseList == null) {
             return;
         }
         int position = -1;
@@ -1762,7 +1852,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 continue;
             }
             if (favoriteList.get(i).getUserPhoneInfo().getNumber().equals(number)) {
-                position = i + (int)(MULTIPLE * 3);
+                position = i + (int) (MULTIPLE * 3);
                 break;
             }
         }
@@ -1773,7 +1863,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 continue;
             }
             if (mobilePhoenList.get(i).getUserPhoneInfo().getNumber().equals(number)) {
-                position = i + (int)MULTIPLE;
+                position = i + (int) MULTIPLE;
                 break;
             }
         }
@@ -1823,10 +1913,10 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             }
         }
 
-        int statInfoMessage = BridgeControl.ConferenceStateInfo(pcARArr,pcASArr ,
-        pcVRArr,pcVSArr ,
-        pcDRArr,pcDSArr ,
-        jiCallType  ,videobyte);
+        int statInfoMessage = BridgeControl.ConferenceStateInfo(pcARArr, pcASArr,
+                pcVRArr, pcVSArr,
+                pcDRArr, pcDSArr,
+                jiCallType, videobyte);
         if (ButtonUtils.showSignelDiologLog()) {
             Log.i("showSignalDisplay", "showSignalDisplay jiCallType(0 1 2 3) = " + jiCallType + "  type(0 1) = " + videobyte[0] + " shangxing = " + videobyte[1] + " xiaxing = " + videobyte[2] +
                     " yanchi = " + videobyte[3] + " badnet(0) = " + videobyte[4]);
@@ -1973,6 +2063,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     String meetingDetailShowPwd;
     String meetingDetailTopic;
     String meetingDetailAdminPassword = "";
+
     private void requestMeetingDetail() {
         if (meetingRequestPresenter == null) {
             meetingRequestPresenter = new MeetingRequestPresenter(this);
@@ -2059,7 +2150,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         if (mPeopleInfoFloatViewListener != null) {
             mPeopleInfoFloatViewListener.removeAllViews();
         } else {
-            Log.e(TAG ,"People info float listener ,open share desk.");
+            Log.e(TAG, "People info float listener ,open share desk.");
         }
         if (mCameraSurfaceTextureListener != null) {
             mCameraSurfaceTextureListener.setPcShareStatus(true);
@@ -2087,7 +2178,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             moveTaskToBack(true);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e(TAG,"start desktop share failure, message is " + e.getMessage());
+            Log.e(TAG, "start desktop share failure, message is " + e.getMessage());
             UiUtils.showToastLong(getString(R.string.meeting_activity_desktop_share_start_failure));
             endDeskShare();
         }
@@ -2142,7 +2233,21 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.meeting_ll_camera) {
+        if (id == R.id.cloud_class_share_btn) {
+            IdcMediaPrepareDesktop();
+        } else if (id == R.id.meeting_ll_camera) {
+            if (left1) {
+                if (netMeetingType == 3) {
+                    StopSendVideo();
+                }
+                BridgeControl.ConferenceCamera(0);
+            } else {
+                if (netMeetingType == 3) {
+                    StartSendVideo();
+                }
+                BridgeControl.ConferenceCamera(1);
+            }
+        } else if (id == R.id.cloud_class_camera_open_iv) {
             if (left1) {
                 if (netMeetingType == 3) {
                     StopSendVideo();
@@ -2157,6 +2262,13 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         } else if (id == R.id.meeting_ll_invite_3) {
             inviteIv.setImageResource(R.drawable.meeting_icon_invitation_check);
             SecondDialog();
+        } else if (id == R.id.cloud_class_finish_tv) {
+            SPUtil.put(MeetingActivity.this, "cameraFlag", "");
+            SPUtil.put(MeetingActivity.this, "microphoneFlag", "");
+            dissolveMeetingRoom();
+            finish();
+        } else if (id == R.id.cloud_class_grade_rel) {
+            meetingLlMid.setVisibility(View.VISIBLE);
         } else if (id == R.id.meeting_tv_gd_ll) {
             if (mHostMan.equals(uTitleStr) && !isFinishing()) {
                 HiddenAllWidgt();
@@ -2213,7 +2325,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                                 dissolveMeetingRoom();
                                 finish();
                             }
-                        } ,
+                        },
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -2225,7 +2337,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 closeMeetingRoom();
                 finish();
             }
-        } else if (id == R.id.meeting_tv_qh) {
+        } else if (id == R.id.cloud_class_exit_iv) {
             IdcMediaChangeCamera();
             inVisibleMeetingFunLlLeft();
         } else if (id == R.id.meeting_tv_fs) {
@@ -2255,7 +2367,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 meetingLlMid.setVisibility(View.GONE);
                 bdtimes = false;
             }
-        } else if (id == R.id.meeting_tv_jy) {  // 禁言 本地禁言
+        } else if (id == R.id.cloud_class_sun_iv) {  // 禁言 本地禁言
             if (jytimes) {
                 if (netMeetingType == 3) {
                     StopSendVoice();
@@ -2377,12 +2489,12 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 left2 = true;
             }
             inVisibleMeetingFunLlLeft();
-        } else if (id == R.id.meeting_share_some) {  // 共享
+        } else if (id == R.id.cloud_class_go_to_back_iv) {  // 共享
             IdcMediaMineCancel();
         } else if (id == R.id.btn_sharing_desk) {  // 共享桌面
             llMeetingSharing.setVisibility(View.GONE);
             IdcMediaPrepareDesktop();
-        } else if (id == R.id.btn_sharing_white_board) {  // 白板
+        } else if (id == R.id.cloud_class_board_rel) {  // 白板
             llMeetingSharing.setVisibility(View.GONE);
             IdcMediaPrepareBroad(1);
 
@@ -2402,57 +2514,127 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             }
         } else if (id == R.id.meeting_info_imageview) {
             MeetingDetailDialog();
-        } else if (id == R.id.meeting_recoder) {
-            idcMediaRecord();
+        } else if (id == R.id.cloud_class_camera_change_iv) {
+            if (screenRecordManager == null) {
+                Log.d(TAG, "screen record create a new manager.");
+                screenRecordManager = new ScreenRecordManager();
+                screenRecordManager.init(this);
+            }
+            if (recordView.isSelected()) {
+                recordView.setSelected(false);
+                screenRecordManager.stopRecord(false);
+                if (screenRecordSaveProgressDialog == null && !isFinishing()) {
+                    screenRecordSaveProgressDialog = new ProgressDialog(MeetingActivity.this);
+                    screenRecordSaveProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                    screenRecordSaveProgressDialog.setCancelable(false);
+                    screenRecordSaveProgressDialog.setTitle(getString(R.string.meeting_activity_saving_screen_record_file));
+                    screenRecordSaveProgressDialog.setProgressNumberFormat(0 + getString(R.string.meeting_activity_hint_record_time_start) + getString(R.string.meeting_activity_hint_record_time_end));
+                    screenRecordSaveProgressDialog.setMax(80);
+                    screenRecordSaveProgressDialog.setProgress(0);
+                    screenRecordSaveProgressDialog.show();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            super.run();
+                            int progerss = 0;
+                            while (progerss <= 80) {
+                                if (screenRecordSaveProgressDialog != null && screenRecordSaveProgressDialog.isShowing()) {
+                                    screenRecordSaveProgressDialog.setProgress(progerss);
+                                    screenRecordSaveProgressDialog.setProgressNumberFormat(progerss / 10 + getString(R.string.meeting_activity_hint_record_time_start) + getString(R.string.meeting_activity_hint_record_time_end));
+                                }
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                    break;
+                                }
+                                progerss++;
+                            }
+                            if (screenRecordSaveProgressDialog != null && !isFinishing()) {
+                                screenRecordSaveProgressDialog.dismiss();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        UiUtils.showToastLong(getString(R.string.activity_meeting_usb_record_end));
+                                    }
+                                });
+                            }
+                            screenRecordSaveProgressDialog = null;
+                        }
+                    }.start();
+                }
+            } else {
+                recordView.setSelected(true);
+                screenRecordManager.startRecord();
+            }
+            //idcMediaRecord();
+        } else if (id == R.id.toggle_button_view_1) {
+            Toast.makeText(this, "llllll", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void initView() {
+        cloudClassGoToMagic = findViewById(R.id.cloud_class_go_to_magic);
+        cloudClassGoToViewPager = findViewById(R.id.cloud_class_go_to_view_pager);
+        num = findViewById(R.id.cloud_class_num_tv);
+        toggleButton1 = findViewById(R.id.toggle_button_view_1);
+        toggleButton2 = findViewById(R.id.toggle_button_view_2);
+        toggleButton3 = findViewById(R.id.toggle_button_view_3);
+        exitView = findViewById(R.id.cloud_class_exit_iv);
+        cameraOpenView = findViewById(R.id.cloud_class_camera_open_iv);
+        sunView = findViewById(R.id.cloud_class_sun_iv);
+        recordView = findViewById(R.id.cloud_class_camera_change_iv);
+        boardView = findViewById(R.id.cloud_class_board_rel);
+        backView = findViewById(R.id.cloud_class_go_to_back_iv);
+        finishView = findViewById(R.id.cloud_class_finish_tv);
+        gradeView = findViewById(R.id.cloud_class_grade_rel);
+        shareView = findViewById(R.id.cloud_class_share_btn);
+
         blankCanvasView = findViewById(R.id.blank_canvas_view);
-        meetingTvGd = findViewById(R.id.meeting_tv_gd );
-        meetingTvGfImage = findViewById(R.id.meeting_tv_gf_image );
-        meetingTvJyImage = findViewById(R.id.meeting_tv_jy_image );
-        meetingTvFsImage = findViewById(R.id.meeting_tv_fs_image );
-        meetingLlMidAuto = findViewById(R.id.meeting_ll_mid_auto );
-        meetingLlMid1 = findViewById(R.id.meeting_ll_mid_1 );
-        meetingLlMid2 = findViewById(R.id.meeting_ll_mid_2 );
-        meetingLlMid3 = findViewById(R.id.meeting_ll_mid_3 );
-        meetingLlMid4 = findViewById(R.id.meeting_ll_mid_4 );
-        meetingLlMid5 = findViewById(R.id.meeting_ll_mid_5 );
-        meetingLlMid6 = findViewById(R.id.meeting_ll_mid_6 );
-        showHandsIcon = findViewById(R.id.show_hands_icon );
-        backgroundImageView = findViewById(R.id.bd_iv );
-        netIv = findViewById(R.id.net_iv );
-        meetingInfoImageview = findViewById(R.id.meeting_info_imageview );
-        meetingTvTime = findViewById(R.id.meeting_tv_time );
-        meetingTvMeetingtheme = findViewById(R.id.meeting_tv_meetingtheme );
-        meetingLlLeft1 = findViewById(R.id.meeting_ll_left_1 );
+        meetingTvGd = findViewById(R.id.meeting_tv_gd);
+        meetingTvGfImage = findViewById(R.id.meeting_tv_gf_image);
+        meetingTvJyImage = findViewById(R.id.meeting_tv_jy_image);
+        meetingTvFsImage = findViewById(R.id.meeting_tv_fs_image);
+        meetingLlMidAuto = findViewById(R.id.meeting_ll_mid_auto);
+        meetingLlMid1 = findViewById(R.id.meeting_ll_mid_1);
+        meetingLlMid2 = findViewById(R.id.meeting_ll_mid_2);
+        meetingLlMid3 = findViewById(R.id.meeting_ll_mid_3);
+        meetingLlMid4 = findViewById(R.id.meeting_ll_mid_4);
+        meetingLlMid5 = findViewById(R.id.meeting_ll_mid_5);
+        meetingLlMid6 = findViewById(R.id.meeting_ll_mid_6);
+        showHandsIcon = findViewById(R.id.show_hands_icon);
+        backgroundImageView = findViewById(R.id.bd_iv);
+        netIv = findViewById(R.id.net_iv);
+        meetingInfoImageview = findViewById(R.id.meeting_info_imageview);
+        meetingTvTime = findViewById(R.id.meeting_tv_time);
+        meetingTvMeetingtheme = findViewById(R.id.meeting_tv_meetingtheme);
+        meetingLlLeft1 = findViewById(R.id.meeting_ll_left_1);
         meetingLlLeft3 = findViewById(R.id.meeting_ll_left_3);
-        showHandsText = findViewById(R.id.show_hands_text );
-        sharePositonText = findViewById(R.id.sharepositiontext );
-        shareDesktopSponsorName = findViewById(R.id.share_desktop_man_name_textview );
-        meetingTvPicture = findViewById(R.id.meeting_tv_picture );
-        meetingTvQh = findViewById(R.id.meeting_tv_qh );
-        llEnd = findViewById(R.id.meeting_ll_end );
-        meetingTvYq = findViewById(R.id.meeting_tv_yq );
-        meetingLlMid = findViewById(R.id.meeting_ll_mid );
-        meetingLlLeft2 = findViewById(R.id.meeting_ll_left_2 );
-        meetingLlLeft = findViewById(R.id.meeting_ll_left );
-        meetingTvRw = findViewById(R.id.meeting_tv_rw );
-        showLayout = findViewById(R.id.show_linear_layout );
-        llMeetingSharing = findViewById(R.id.ll_meeting_sharing );
-        meetingDeskFragment = findViewById(R.id.meeting_desk_fragment );
-        meetingLlTop = findViewById(R.id.meeting_ll_top );
-        meetingTvFs = findViewById(R.id.meeting_tv_fs );
-        meetingTvJy = findViewById(R.id.meeting_tv_jy );
+        showHandsText = findViewById(R.id.show_hands_text);
+        sharePositonText = findViewById(R.id.sharepositiontext);
+        shareDesktopSponsorName = findViewById(R.id.share_desktop_man_name_textview);
+        meetingTvPicture = findViewById(R.id.meeting_tv_picture);
+        meetingTvQh = findViewById(R.id.meeting_tv_qh);
+        llEnd = findViewById(R.id.meeting_ll_end);
+        meetingTvYq = findViewById(R.id.meeting_tv_yq);
+        meetingLlMid = findViewById(R.id.meeting_ll_mid);
+        meetingLlLeft2 = findViewById(R.id.meeting_ll_left_2);
+        meetingLlLeft = findViewById(R.id.meeting_ll_left);
+        meetingTvRw = findViewById(R.id.meeting_tv_rw);
+        showLayout = findViewById(R.id.show_linear_layout);
+        llMeetingSharing = findViewById(R.id.ll_meeting_sharing);
+        meetingDeskFragment = findViewById(R.id.meeting_desk_fragment);
+        meetingLlTop = findViewById(R.id.meeting_ll_top);
+        meetingTvFs = findViewById(R.id.meeting_tv_fs);
+        meetingTvJy = findViewById(R.id.meeting_tv_jy);
         meetingTvGf = findViewById(R.id.meeting_tv_gf);
-        meetingTvRy = findViewById(R.id.meeting_tv_ry );
-        meetingActivity = findViewById(R.id.meeting_activity );
-        shareLayout = findViewById(R.id.meeting_share_some );
-        showHands = findViewById(R.id.meeting_show_hands );
-        mLocatePreviewLayout = findViewById(R.id.meeting_local_video_rl );
-        meetingSfYd = findViewById(R.id.meeting_sf_yd );
-        meetingSfBd = findViewById(R.id.meeting_sf_bd );
+        meetingTvRy = findViewById(R.id.meeting_tv_ry);
+        meetingActivity = findViewById(R.id.meeting_activity);
+        shareLayout = findViewById(R.id.meeting_share_some);
+        showHands = findViewById(R.id.meeting_show_hands);
+        mLocatePreviewLayout = findViewById(R.id.meeting_local_video_rl);
+        meetingSfYd = findViewById(R.id.meeting_sf_yd);
+        meetingSfBd = findViewById(R.id.meeting_sf_bd);
         meetingPipTv = findViewById(R.id.meeting_pip_tv);
         inviteIv = (ImageView) findViewById(R.id.invite_iv);
         meetingManageIv = (ImageView) findViewById(R.id.meeting_manage_iv);
@@ -2477,8 +2659,16 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         meetingRecoderTextView = (TextView) findViewById(R.id.meeting_recoder_textview);
 
         TextView sharingDeskTextview = (TextView) findViewById(R.id.btn_sharing_desk);
-        TextView wihteBroadTextview = (TextView) findViewById(R.id.btn_sharing_white_board);
-
+        wihteBroadTextview = (TextView) findViewById(R.id.btn_sharing_white_board);
+        shareView.setOnClickListener(this);
+        gradeView.setOnClickListener(this);
+        finishView.setOnClickListener(this);
+        backView.setOnClickListener(this);
+        boardView.setOnClickListener(this);
+        recordView.setOnClickListener(this);
+        sunView.setOnClickListener(this);
+        cameraOpenView.setOnClickListener(this);
+        exitView.setOnClickListener(this);
         meetingTvGd.setOnClickListener(this);
         meetingTvPicture.setOnClickListener(this);
         meetingTvQh.setOnClickListener(this);
@@ -2526,6 +2716,55 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 meetingTvMeetingtheme.setText(stringBuilder.toString());
             }
         }
+        if (!ListUtils.isEmpty(IdcMediaGetMemberList())) {
+            num.setText("当前" + IdcMediaGetMemberList().size() + "人");
+        }
+        toggleButton1.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if (isChecked) {
+                Log.i(TAG, "idc===" + IdcMediaGetMemberList().toString());
+                //开启
+                if (!ListUtils.isEmpty(IdcMediaGetMemberList())) {
+                    for (int i = 0; i < IdcMediaGetMemberList().size(); i++) {
+                        String number = IdcMediaGetMemberList().get(i).getNumber();
+                        IdcMediaKit.IdcMediaCustomDataChannel(number, "open_speaker");
+                    }
+                }
+
+            } else {
+                if (!ListUtils.isEmpty(IdcMediaGetMemberList())) {
+                    for (int i = 0; i < IdcMediaGetMemberList().size(); i++) {
+                        String number = IdcMediaGetMemberList().get(i).getNumber();
+                        IdcMediaKit.IdcMediaCustomDataChannel(number, "close_speaker");
+                    }
+                }
+            }
+        });
+        toggleButton2.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if (isChecked) {
+                BridgeControl.ConferenceMute(0);
+            } else {
+                BridgeControl.ConferenceMute(1);
+            }
+        });
+        toggleButton3.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if (isChecked) {
+                if (!ListUtils.isEmpty(IdcMediaGetMemberList())) {
+                    for (int i = 0; i < IdcMediaGetMemberList().size(); i++) {
+                        String number = IdcMediaGetMemberList().get(i).getNumber();
+                        IdcMediaKit.IdcMediaCustomDataChannel(number, "open_camera");
+                    }
+                }
+
+            } else {
+                if (!ListUtils.isEmpty(IdcMediaGetMemberList())) {
+                    for (int i = 0; i < IdcMediaGetMemberList().size(); i++) {
+                        String number = IdcMediaGetMemberList().get(i).getNumber();
+                        IdcMediaKit.IdcMediaCustomDataChannel(number, "close_camera");
+                    }
+                }
+
+            }
+        });
     }
 
     @Override
@@ -2559,7 +2798,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     }
 
     @Override
-    public void SelectTaskSuccess(List<MeetingTaskItem.DataBean.ListBean> list, int totalNum ,int pageNo) {
+    public void SelectTaskSuccess(List<MeetingTaskItem.DataBean.ListBean> list, int totalNum, int pageNo) {
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setRefreshing(false);
         }
@@ -2602,7 +2841,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 meetingTextView.setVisibility(View.VISIBLE);
                 meetingTextView.setText(getString(R.string.current_task));
             }
-            if(meetingTaskRY != null) {
+            if (meetingTaskRY != null) {
                 meetingTaskRY.setVisibility(View.GONE);
             }
         }
@@ -2629,9 +2868,9 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     @Override
     public void HttpConnectFailure(String message, MeetingRequestModel.MEETING_REQUEST_TYPE ErrorType) {
         if (ErrorType != null) {
-            Log.i(TAG ,"Http connect fialure error. Type is " + ErrorType.ordinal());
+            Log.i(TAG, "Http connect fialure error. Type is " + ErrorType.ordinal());
         } else {
-            Log.i(TAG ,"Http connect fialure error.");
+            Log.i(TAG, "Http connect fialure error.");
         }
         if (!TextUtils.isEmpty(message)) {
             UiUtils.showToast(message);
@@ -2762,6 +3001,12 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                         if (detail.size() > hostManIndex) {
                             String Host = detail.get(hostManIndex);
                             mHostMan = Host;
+                            Message messageHostName = handler.obtainMessage();
+                            messageHostName.what = Receive_Hostname_WHAT;
+                            if (handler != null) {
+                                Log.i(TAG, "hkhDebug set " + mHostMan);
+                                handler.sendMessageDelayed(messageHostName, 0);
+                            }
                             StringBuilder HomeThemeStr = new StringBuilder();
                             meetingDetailAdminPassword = intent.getStringExtra("AdminPassword");
                             if (!TextUtils.isEmpty(uTitleStr)) {
@@ -2881,7 +3126,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                             } else {
                                 jinyan = false;
                             }
-                            Log.e("utitleStr","utitleStr ="+ uTitleStr +", HostMan ="+ mHostMan);
+                            Log.e("utitleStr", "utitleStr =" + uTitleStr + ", HostMan =" + mHostMan);
                             if (netMeetingType == 1) {  // 在会议模式时，非点对点模式
                                 if (uTitleStr.equals(mHostMan)) {
                                     meetingLlLeft3.setVisibility(View.VISIBLE);
@@ -2922,6 +3167,11 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                             String hostMember = intent.getStringExtra("HostMan");
                             if (!TextUtils.isEmpty(hostMember)) {
                                 mHostMan = hostMember;
+                                Message messageHostName2 = handler.obtainMessage();
+                                messageHostName2.what = Receive_Hostname_WHAT;
+                                if (handler != null) {
+                                    handler.sendMessageDelayed(messageHostName2, 0);
+                                }
                                 Log.i(TAG, "meeting detail control change host man is " + mHostMan);
                                 if (!hostMember.equals(mHostMan) && !hostMember.equals(uTitleStr)) {
                                     if (joinAdapter != null) {
@@ -3205,7 +3455,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                     case "closeMeetings":
                         String closeMeeting = intent.getStringExtra("closeMeeting");
                         if (closeMeeting.equals(meetingNumber)) {
-                            BridgeControl.CallHangUp();
+                            BridgeControl.CallHangUp(9);
                             closeMeetingRoom();
                             finish();
                         }
@@ -3250,6 +3500,11 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                             String hostMember = meetingPowers[3];
                             if (TextUtils.isEmpty(hostMember)) {
                                 mHostMan = hostMember;
+                                Message messageHostName = handler.obtainMessage();
+                                messageHostName.what = Receive_Hostname_WHAT;
+                                if (handler != null) {
+                                    handler.sendMessageDelayed(messageHostName, 0);
+                                }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -3276,6 +3531,11 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                                 BridgeControl.ConferenceDetail();
                             }
                             mHostMan = meetingMan2;
+                            Message messageHostName = handler.obtainMessage();
+                            messageHostName.what = Receive_Hostname_WHAT;
+                            if (handler != null) {
+                                handler.sendMessageDelayed(messageHostName, 0);
+                            }
                             if (hostAdapter != null) {
                                 hostAdapter.setHostMan(mHostMan);
                             }
@@ -3444,7 +3704,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                         if (mPeopleInfoFloatViewListener != null) {
                             mPeopleInfoFloatViewListener.setMeeting(GlobalUtils.getLocalMeetingStatus(true));
                         } else {
-                            Log.e(TAG ,"People info float listener ,set meeting status.");
+                            Log.e(TAG, "People info float listener ,set meeting status.");
                         }
                         break;
 
@@ -3458,12 +3718,12 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
 
                     case "HangUpCallMeeting":
                         String meetingNumberReconnct = meetingNumber;
-                        BridgeControl.CallHangUp();
+                        BridgeControl.CallHangUp(10);
                         DisconnectDialog.create(MeetingActivity.this, getString(R.string.title_6), getString(R.string.meeting_activity_net_error_contents), getString(R.string.meeting_activity_net_error_try),
                                 new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        if(NetworkManager.isConnected()) {
+                                        if (NetworkManager.isConnected()) {
                                             Log.i(TAG, "Service reconnect,Network connect.");
                                             new Thread() {
                                                 @Override
@@ -3510,9 +3770,13 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                             }
                             UiUtils.showToast(getString(R.string.meeting_activity_permission_normal));
                             jstimes = false;
+                            EventMessage msg = new EventMessage(1, "no_hand");
+                            EventBus.getDefault().post(msg);
                         } else if (handupCode == 1 || handupCode == 2) {
+                            EventMessage msg = new EventMessage(1, "hand");
+                            EventBus.getDefault().post(msg);
                             setTransferPersonPermission(true);
-                            showHandsIcon.setImageResource(R.drawable.meeting_show_handup);
+                            showHandsIcon.setImageResource(R.mipmap.sp_icon_hand_pre);
                             showHandsText.setText(getString(R.string.ask_speech));
                             if (handupCode == 2) {
                                 UiUtils.showToast(getString(R.string.meeting_activity_apply_deny));
@@ -3632,6 +3896,9 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         if (subscribeFragmentAdapter != null && meetingTextView != null && meetingTaskRY != null) {
             getMeetingTask(taskPageNo);
         }
+        if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
 
         if (GlobalUtils.launchEntry) {
             GlobalUtils.launchEntry = false;
@@ -3730,7 +3997,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         if (meetingPerson != null) {
             unregisterReceiver(meetingPerson);
         }
-        BridgeControl.CallHangUp();
+        BridgeControl.CallHangUp(7);
         try {
             releaseCamera();
             if (blankCanvasView != null) {
@@ -3792,7 +4059,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         if (mPeopleInfoFloatViewListener != null) {
             mPeopleInfoFloatViewListener.freeAll();
         } else {
-            Log.e(TAG ,"People info float listener ,free all.");
+            Log.e(TAG, "People info float listener ,free all.");
         }
         MeetingEntity.getInstance().setMeetingState(false);
         if (meetingBroadcast != null) {
@@ -3832,12 +4099,12 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 }
             }
         }
-        BridgeControl.CallHangUp();
+        BridgeControl.CallHangUp(8);
         releaseCamera();
         if (mPeopleInfoFloatViewListener != null) {
             mPeopleInfoFloatViewListener.freeAll();
         } else {
-            Log.e(TAG ,"People info float listener ,free all ,close meeting before.");
+            Log.e(TAG, "People info float listener ,free all ,close meeting before.");
         }
         if (blankCanvasView != null) {
             blankCanvasView.removeAllViews();
@@ -3846,7 +4113,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         if (mPeopleInfoFloatViewListener != null) {
             mPeopleInfoFloatViewListener.freeAll();
         } else {
-            Log.e(TAG ,"People info float listener ,free all ,close meeting after.");
+            Log.e(TAG, "People info float listener ,free all ,close meeting after.");
         }
         MeetingEntity.getInstance().setMeetingNumber("");
         MemberManager.getInstance().Destory();
@@ -3989,10 +4256,10 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     private void StartOrStopSendVideo() {
         Log.e(TAG, "StartOrStopSendVideo, need open is " + needMyVideoOpen);
         if (netMeetingType == 3) {
-            Log.e(TAG,"netMeetingType is p2p.");
+            Log.e(TAG, "netMeetingType is p2p.");
             return;
         }
-        if(needMyVideoOpen){
+        if (needMyVideoOpen) {
             StopSendVideo();
         } else {
             StartSendVideo();
@@ -4004,13 +4271,35 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-
+                case SCREEN_DATA:
+                    editText.setText("");
+                    List<ScreenPopupWindowTeacherListBean.DataBean.RecordsBean> list = (List<ScreenPopupWindowTeacherListBean.DataBean.RecordsBean>) msg.obj;
+                    cloudClassScreenPopupWindowAdapter.setCloudClassListData(list);
+                    cloudClassScreenPopupWindowAdapter.notifyDataSetChanged();
+                    break;
+                case SCREEN_DATA_show_msg:
+                    ScreenPopupWindowTeacherListBean dataBean = (ScreenPopupWindowTeacherListBean) msg.obj;
+                    ToastUtils.showLong(MeetingActivity.this, dataBean.getMsg());
+                    break;
+                case SCREEN_DATA_student_show_msg:
+                    StudentBean studentDataBean = (StudentBean) msg.obj;
+                    ToastUtils.showLong(MeetingActivity.this, studentDataBean.getMsg());
+                    break;
+                case Receive_Hostname_WHAT:
+                    if (mPeopleInfoFloatViewListener != null) {
+                        Log.i(TAG, "hkhDebug people listener set host name " + mHostMan);
+                        mPeopleInfoFloatViewListener.setHostName(mHostMan);
+                    } else {
+                        Log.w(TAG, "hkhDebug people listener null");
+                    }
+                    break;
                 case PHONE_CALL_RECIVER_AND_HANG_DOEN:
                     if (mBluetoothDevicesManager != null && !mBluetoothDevicesManager.getBluetoothEarListening()) {
                         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                         if (audioManager != null) {
                             audioManager.setMode(AudioManager.MODE_NORMAL);
-                            audioManager.setSpeakerphoneOn(true);;
+                            audioManager.setSpeakerphoneOn(true);
+                            ;
                             Log.d(TAG, "PhoneState is " + audioManager.getMode() + ", speaker = " + audioManager.isSpeakerphoneOn());
                         }
                     }
@@ -4079,7 +4368,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 leftll = false;
                 times = false;
             } else {
-                llEnd.setVisibility(View.VISIBLE);
+                llEnd.setVisibility(View.GONE);
                 meetingLlTop.setVisibility(View.VISIBLE);
                 if (isTransferPersonPermission) {
                     meetingTvQh.setVisibility(View.GONE);
@@ -4100,7 +4389,193 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         } else if (TextUtils.equals("close_meeting", newcall)) {
             closeMeetingRoom();
             finish();
+        } else if (TextUtils.equals(newcall, "open_evaluate")) {
+            String number = SPUtil.get(MeetingActivity.this, "evaluate_open_number", "").toString();
+            showEvaluate(number);
         }
+    }
+
+    /**
+     * 评语弹窗
+     *
+     * @param number
+     */
+    private void showEvaluate(String number) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getStudentId(number);
+            }
+        }).start();
+        BasePopupWindow popupWindow = new BasePopupWindow(MeetingActivity.this) {
+            @Override
+            public View onCreateContentView() {
+                return createPopupById(R.layout.screen_popup_window_layout);
+            }
+        };
+        RecyclerView rv = popupWindow.findViewById(R.id.evaluate_rv);
+        TextView sendBtn = popupWindow.findViewById(R.id.exchange_send_tv);
+        editText = popupWindow.findViewById(R.id.exchange_edit);
+        rv.setLayoutManager(new LinearLayoutManager(MeetingActivity.this));
+        cloudClassScreenPopupWindowAdapter = new ScreenPopupWindowAdapter(MeetingActivity.this);
+        rv.setAdapter(cloudClassScreenPopupWindowAdapter);
+        popupWindow.showPopupWindow(0, WindowUtil.getScreenHeight(MeetingActivity.this));
+        sendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String content = editText.getText().toString();
+                if (TextUtils.isEmpty(content)) {
+                    ToastUtils.showLong(MeetingActivity.this, "请输入内容！");
+                    return;
+                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        sendMessageInfo(content);
+                    }
+                }).start();
+
+            }
+        });
+    }
+
+    /**
+     * 老师发送评语
+     *
+     * @param content
+     */
+    private void sendMessageInfo(String content) {
+        String tempAccessToken = SPUtil.get(MeetingActivity.this, "accessToken", "accessToken").toString();
+        String tempClassId = SPUtil.get(MeetingActivity.this, "classId", "classId").toString();
+//        String tempAccount = " ";
+//        String tempClassId = " ";
+        String url = "http://yundou.skyline.name:18002/class/teacher/submit/scored";
+        HashMap hashMap = new HashMap();
+        hashMap.put("coursesId", tempClassId);
+        hashMap.put("studentId", studentId);
+        hashMap.put("teacherAppraise", content);
+        HttpClient.getInstance(MeetingActivity.this).post(tempAccessToken, url, hashMap, new HttpClient.MyCallback() {
+            @Override
+            public void success(Response res) throws IOException {
+                //Log.i("EvaluateInfo==", "EvaluateInfo==" + res.body().string());
+                String bodys = res.body().string();
+                Log.i("EvaluateInfo==", "EvaluateInfo==" + bodys);
+                Gson gson = new Gson();
+                ScreenPopupWindowTeacherListBean dataBean = gson.fromJson(bodys, ScreenPopupWindowTeacherListBean.class);
+                if (dataBean != null) {
+                    Message message = handler.obtainMessage();
+                    message.what = SCREEN_DATA_show_msg;
+                    message.obj = dataBean;
+                    if (handler != null) {
+                        handler.sendMessage(message);
+                    }
+                    getEvaluateInfo(studentId);
+                }
+
+            }
+
+            @Override
+            public void failed(IOException e) {
+                //ToastUtils.showLong(MeetingActivity.this, e.getMessage());
+            }
+        });
+    }
+
+    /**
+     * 根据会议号查询学生id
+     *
+     * @param number
+     */
+    private void getStudentId(String number) {
+        String tempAccessToken = SPUtil.get(MeetingActivity.this, "accessToken", "accessToken").toString();
+
+        String url = "http://yundou.skyline.name:18001" + "/user/manage/meeting/action/info";
+        HashMap hashMap = new HashMap();
+        hashMap.put("meetingAccount", number);
+        HttpClient.getInstance(MeetingActivity.this).get(tempAccessToken, url, hashMap, new HttpClient.MyCallback() {
+            @Override
+            public void success(Response res) throws IOException {
+                //Log.i("res==", "res==" + res.body().string());
+                String jsonData = res.body().string();
+                Gson gson = new Gson();
+                StudentBean studentBean = gson.fromJson(jsonData, StudentBean.class);
+                int code = studentBean.getCode();
+                if (code == 200) {
+                    if (studentBean.getData() != null) {
+                        StudentBean.DataBean dataBean = studentBean.getData();
+                        studentId = dataBean.getId();
+                        getEvaluateInfo(studentId);
+                    } else {
+                        Message message = handler.obtainMessage();
+                        message.what = SCREEN_DATA_student_show_msg;
+                        message.obj = studentBean;
+                        if (handler != null) {
+                            handler.sendMessage(message);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void failed(IOException e) {
+                //ToastUtils.showLong(MeetingActivity.this, e.getMessage());
+
+            }
+        });
+    }
+
+    /**
+     * 查询老师的评语
+     *
+     * @param studentId
+     */
+    private void getEvaluateInfo(String studentId) {
+        String tempAccessToken = SPUtil.get(MeetingActivity.this, "accessToken", "accessToken").toString();
+
+        String url = "http://yundou.skyline.name:18002/class/student/complete/appraise";
+        HashMap hashMap = new HashMap();
+        hashMap.put("pageNumber", 1 + "");
+        hashMap.put("pageSize", 999 + "");
+        hashMap.put("studentId", studentId);
+        HttpClient.getInstance(MeetingActivity.this).post(tempAccessToken, url, hashMap, new HttpClient.MyCallback() {
+            @Override
+            public void success(Response res) throws IOException {
+                //Log.i("EvaluateInfo==", "EvaluateInfo==" + res.body().string());
+                String bodys = res.body().string();
+                Log.i("EvaluateInfo==", "EvaluateInfo==" + bodys);
+                Gson gson = new Gson();
+                ScreenPopupWindowTeacherListBean dataBean = gson.fromJson(bodys, ScreenPopupWindowTeacherListBean.class);
+                int code = dataBean.getCode();
+                if (code == 200) {
+                    if (dataBean.getData() != null) {
+                        String string = JSONArray.toJSONString(dataBean.getData().getRecords());
+                        Log.i("json==", string);
+                        List<ScreenPopupWindowTeacherListBean.DataBean.RecordsBean> list = JSON.parseObject(string, new TypeReference<List<ScreenPopupWindowTeacherListBean.DataBean.RecordsBean>>() {
+                        });
+                        if (ListUtils.getSize(list) > 0) {
+                            Message message = handler.obtainMessage();
+                            message.what = SCREEN_DATA;
+                            message.obj = list;
+                            if (handler != null) {
+                                handler.sendMessage(message);
+                            }
+                        }
+                    }
+                } else {
+                    Message message = handler.obtainMessage();
+                    message.what = SCREEN_DATA_show_msg;
+                    message.obj = dataBean;
+                    if (handler != null) {
+                        handler.sendMessage(message);
+                    }
+                }
+            }
+
+            @Override
+            public void failed(IOException e) {
+
+            }
+        });
     }
 
     public void changeBtnBg(String screenNumber) {
@@ -4161,8 +4636,8 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             LogUtils.i(TAG, "no need close voice.");
             return;
         }
-        if (meetingTvJyImage != null) {
-            meetingTvJyImage.setImageResource(R.drawable.meeting_jingyin_g);
+        if (sunView != null) {
+            sunView.setImageResource(R.mipmap.sp_icon_microphone_small_pre);
         }
         BridgeControl.ConferenceSpeakerReceive(1);
         jytimes = true;
@@ -4175,8 +4650,8 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             LogUtils.i(TAG, "no need open voice.");
             return;
         }
-        if (meetingTvJyImage != null) {
-            meetingTvJyImage.setImageResource(R.drawable.meeting_jingyin);
+        if (sunView != null) {
+            sunView.setImageResource(R.mipmap.sp_icon_microphone_small_default);
         }
         BridgeControl.ConferenceSpeakerReceive(0);
         jytimes = false;
@@ -4185,7 +4660,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     private void StartSendVideo() {
         Log.i(TAG, "Start Send Video.");
         left1 = true;
-        cameraIv.setImageResource(R.drawable.meeting_icon_camera_close);
+        cameraOpenView.setImageResource(R.mipmap.sp_icon_camera_pre);
         BridgeControl.ConferenceCameraSend(1);
         if (mCameraSurfaceTextureListener != null) {
             mCameraSurfaceTextureListener.setStopSpfs(true);
@@ -4195,7 +4670,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     private void StopSendVideo() {
         Log.i(TAG, "Stop Send Video.");
         left1 = false;
-        cameraIv.setImageResource(R.drawable.meeting_icon_camera_open);
+        cameraOpenView.setImageResource(R.mipmap.sp_icon_camera_default);
         BridgeControl.ConferenceCameraSend(0);
         BridgeControl.ConferenceFrame();
         if (mCameraSurfaceTextureListener != null) {
@@ -4216,6 +4691,9 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         Log.i(TAG, "Hidden all widgt. netMeetingType is " + netMeetingType);
         leftll = false;
         times = false;
+        if (cloudClassGoToViewPager != null) {
+            cloudClassGoToViewPager.setVisibility(View.GONE);
+        }
         if (netMeetingType != 3) {  // 会议模式
             if (llEnd != null) {
                 llEnd.setVisibility(View.GONE);
@@ -4287,9 +4765,12 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     private void ShowAllWidgt() {
         Log.i(TAG, "Show all widgt. netMeetingType is " + netMeetingType);
         times = true;
+        if (cloudClassGoToViewPager != null) {
+            cloudClassGoToViewPager.setVisibility(View.VISIBLE);
+        }
         if (netMeetingType != 3) {// 会议模式
             if (llEnd != null) {
-                llEnd.setVisibility(View.VISIBLE);
+                llEnd.setVisibility(View.GONE);
             }
             if (meetingLlTop != null) {
                 meetingLlTop.setVisibility(View.VISIBLE);
@@ -4308,14 +4789,14 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 meetingTvQh.setVisibility(View.VISIBLE);
             }
             if (meetingRecoder != null) {
-                meetingRecoder.setVisibility(View.VISIBLE);
+                meetingRecoder.setVisibility(View.GONE);
             }
             if (meetingInfoImageview != null) {
                 meetingInfoImageview.setVisibility(View.VISIBLE);
             }
         } else {  // 点对点模式
             if (llEnd != null) {
-                llEnd.setVisibility(View.VISIBLE);
+                llEnd.setVisibility(View.GONE);
             }
             if (meetingLlTop != null) {
                 meetingLlTop.setVisibility(View.VISIBLE);
@@ -4373,13 +4854,13 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         String[] viewTagList = mediaStatusTag.split(",");
         boolean findMyOnScreen = false;
         boolean myMicOpen = false;
-        for (int i = 0 ; i < viewTagList.length ; i++) {
+        for (int i = 0; i < viewTagList.length; i++) {
             String[] viewTag = viewTagList[i].split(" ");
             if (viewTag.length < 5) {
                 continue;
             }
             if (viewTag[0].equals(uTitleStr)) {
-                findMyOnScreen= true;
+                findMyOnScreen = true;
                 myMicOpen = viewTag[1].equals("0");
             }
         }
@@ -4392,7 +4873,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             }
             for (int i = 0; i < resultList.size(); i++) {
                 if (resultList.get(i).getNumber().equals(uTitleStr)) {
-                    if(myMicOpen) {
+                    if (myMicOpen) {
                         resultList.get(i).setSpeak("0");
                     } else {
                         resultList.get(i).setSpeak("1");
@@ -4408,19 +4889,20 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         }
     }
 
-    /**   |--号码[0]-发送声音[1]-发送视频[2]-分屏位置[3]-主辅流[4]--|
-     *    视频流头部信息       是否在屏上       是否打开摄像头  执行操作后摄像头状态
-     *    A 0 1 0 0,B 0 0 0 0        Y          Y           Y
-     *    A 0 0 0 0,B 0 0 0 0        Y          N           N
-     *    B 0 0 0 0                  N          -           N
-     * */
+    /**
+     * |--号码[0]-发送声音[1]-发送视频[2]-分屏位置[3]-主辅流[4]--|
+     * 视频流头部信息       是否在屏上       是否打开摄像头  执行操作后摄像头状态
+     * A 0 1 0 0,B 0 0 0 0        Y          Y           Y
+     * A 0 0 0 0,B 0 0 0 0        Y          N           N
+     * B 0 0 0 0                  N          -           N
+     */
     private void processVideoDataHeader() {
         if (TextUtils.isEmpty(uTitleStr)) {
             return;
         }
         String[] viewTagList = mediaStatusTag.split(",");
         needMyVideoOpen = false;
-        for (int i = 0 ; i < viewTagList.length ; i++) {
+        for (int i = 0; i < viewTagList.length; i++) {
             String[] viewTag = viewTagList[i].split(" ");
             if (viewTag.length < 5) {
                 continue;
@@ -4435,7 +4917,8 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     }
 
     public class MeetingVideoDataHandler extends Handler {
-        private MeetingVideoDataHandler() {}
+        private MeetingVideoDataHandler() {
+        }
 
         public MeetingVideoDataHandler(Looper looper) {
             super(looper);
@@ -4483,7 +4966,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         @Override
         public void screenRecordRunning() {
             if (meetingRecoderImageview != null) {
-                meetingRecoderImageview.setImageResource(R.drawable.video_record_start);
+                recordView.setImageResource(R.mipmap.sp_icon_video_pre);
             }
             if (meetingRecoderTextView != null) {
                 meetingRecoderTextView.setText(R.string.activity_meeting_usb_record_open);
@@ -4494,7 +4977,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
         @Override
         public void screenRecordStoped() {
             if (meetingRecoderImageview != null) {
-                meetingRecoderImageview.setImageResource(R.drawable.video_record_stop);
+                recordView.setImageResource(R.mipmap.sp_icon_video_default);
             }
             if (meetingRecoderTextView != null) {
                 meetingRecoderTextView.setText(R.string.activity_meeting_usb_record_close);
@@ -4522,15 +5005,15 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
 
     /**
      * 成员列表
-     * */
-    public List<phoneinfo> IdcMediaGetMemberList () {
+     */
+    public List<phoneinfo> IdcMediaGetMemberList() {
         return resultList;
     }
 
     /**
      * 屏幕
-     * */
-    public void IdcMediaPrepareDesktop () {
+     */
+    public void IdcMediaPrepareDesktop() {
         if (NotificationsPermissionUtils.isNotificationEnabled(MeetingActivity.this)) {
             checkCaptureIntent();
         } else {
@@ -4547,20 +5030,20 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
 
     /**
      * 画板
-     * */
-    public void IdcMediaPrepareBroad (int type) {
+     */
+    public void IdcMediaPrepareBroad(int type) {
         int width1 = getWindowManager().getDefaultDisplay().getWidth();
         int height1 = getWindowManager().getDefaultDisplay().getHeight();
         if (type == 1) {
             if (!isMeetingPadShare) {
                 GlobalUtils.setShareType(1);
-                BridgeControl.desktopSharingControlPrepare( width1, height1);
+                BridgeControl.desktopSharingControlPrepare(width1, height1);
                 meetShareIcon.setImageResource(R.drawable.shareicon);
                 sharePositonText.setText(getString(R.string.meeting_activity_exit_share));
             }
         } else if (type == 2) {
             if (!isMeetingPadShare) {
-                BridgeControl.desktopSharingControlStart( width1, height1);
+                BridgeControl.desktopSharingControlStart(width1, height1);
                 isMeetingPadShare = true;
                 setTagging(true);
             }
@@ -4568,9 +5051,9 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     }
 
     /**
-     *  取消我的发起
-     * */
-    public void IdcMediaMineCancel () {
+     * 取消我的发起
+     */
+    public void IdcMediaMineCancel() {
         if (GlobalUtils.getShareType(true) == 1) {
             BridgeControl.stopWhiteBoard();
             GlobalUtils.setShareType(0);
@@ -4596,6 +5079,9 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                 params.setMarginStart((int) marginX);
                 llMeetingSharing.setLayoutParams(params);
                 llMeetingSharing.setVisibility(View.VISIBLE);
+                if (wihteBroadTextview != null) {
+                    wihteBroadTextview.setVisibility(View.GONE);
+                }
                 meetShareIcon.setImageResource(R.drawable.shareicon_check);
             } else {
                 meetShareIcon.setImageResource(R.drawable.shareicon);
@@ -4605,8 +5091,8 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     }
 
     /**
-     *  切换摄像头
-     * */
+     * 切换摄像头
+     */
     private void IdcMediaChangeCamera() {
         if (qhtimes) {
             // CameraController.change(MeetingActivity.this, previewCallback);
@@ -4628,8 +5114,8 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     }
 
     /**
-     *  举手
-     * */
+     * 举手
+     */
     private void IdcMediaRaiseHands() {
         LogUtils.e(TAG, "RaiseHand" + " meetingNumber:" + meetingNumber + ",utitleStr" + uTitleStr);
         if (!jstimes) {
@@ -4645,8 +5131,8 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
     }
 
     /**
-     *  录制
-     * */
+     * 录制
+     */
     private void idcMediaRecord() {
         if (screenRecordManager == null) {
             Log.d(TAG, "screen record create a new manager.");
@@ -4661,8 +5147,11 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
             Log.d(TAG, "screen record manager set a new callback.");
         }
         if (!meetingFrameCaptivate) {
+            //recordView.setImageResource(R.mipmap.sp_icon_video_pre);
             screenRecordManager.startRecord();
+
         } else {
+            //recordView.setImageResource(R.mipmap.sp_icon_video_default);
             screenRecordManager.stopRecord(false);
             if (screenRecordSaveProgressDialog == null && !isFinishing()) {
                 screenRecordSaveProgressDialog = new ProgressDialog(MeetingActivity.this);
@@ -4681,7 +5170,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                         while (progerss <= 80) {
                             if (screenRecordSaveProgressDialog != null && screenRecordSaveProgressDialog.isShowing()) {
                                 screenRecordSaveProgressDialog.setProgress(progerss);
-                                screenRecordSaveProgressDialog.setProgressNumberFormat(progerss/10 + getString(R.string.meeting_activity_hint_record_time_start) + getString(R.string.meeting_activity_hint_record_time_end));
+                                screenRecordSaveProgressDialog.setProgressNumberFormat(progerss / 10 + getString(R.string.meeting_activity_hint_record_time_start) + getString(R.string.meeting_activity_hint_record_time_end));
                             }
                             try {
                                 Thread.sleep(100);
@@ -4689,7 +5178,7 @@ public class MeetingActivity extends SActivity implements InternetInfoView , Mee
                                 e.printStackTrace();
                                 break;
                             }
-                            progerss ++;
+                            progerss++;
                         }
                         if (screenRecordSaveProgressDialog != null && !isFinishing()) {
                             screenRecordSaveProgressDialog.dismiss();

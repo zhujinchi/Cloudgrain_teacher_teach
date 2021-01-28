@@ -1,3 +1,4 @@
+import 'package:Cloudgrain_teacher_teach/data/User.dart';
 import 'package:Cloudgrain_teacher_teach/screens/profile/profile_class.dart';
 import 'package:Cloudgrain_teacher_teach/screens/profile/profile_comment.dart';
 import 'package:Cloudgrain_teacher_teach/screens/profile/profile_integration.dart';
@@ -17,6 +18,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool _switchValue = false;
   int _currentTabIndex = 0;
+  String notificationCount = '0';
 
   @override
   void dispose() {
@@ -26,6 +28,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     this._currentTabIndex == 0;
+    User.shared().notificationBus.on<String>().listen((data) {
+      setState(() {
+        notificationCount = data;
+      });
+    });
   }
 
   @override
@@ -65,22 +72,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     decoration: BoxDecoration(
                         color: Color.fromRGBO(230, 244, 255, 1),
                         borderRadius: BorderRadius.circular(22.w)),
+                    child: Image.asset(
+                      'assets/avatars/my__avatar_a_default@3x.png',
+                      width: 44.w,
+                      height: 44.w,
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 74.w, top: 69.w),
-                  child: Text(
-                    '小豆老师',
-                    style: TextStyle(
-                        color: Color.fromRGBO(15, 32, 67, 1),
-                        fontSize: 14.sp,
-                        fontFamily: 'PingFangSC-Regular'),
-                  ),
-                ),
+                    padding: EdgeInsets.only(left: 74.w, top: 69.w),
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          User.shared().actualName,
+                          style: TextStyle(
+                              color: Color.fromRGBO(15, 32, 67, 1),
+                              fontSize: 14.sp,
+                              fontFamily: 'PingFangSC-Regular'),
+                        ),
+                        Text(
+                          '老师',
+                          style: TextStyle(
+                              color: Color.fromRGBO(15, 32, 67, 1),
+                              fontSize: 14.sp,
+                              fontFamily: 'PingFangSC-Regular'),
+                        ),
+                      ],
+                    )),
                 Padding(
                   padding: EdgeInsets.only(left: 74.w, top: 88.w),
                   child: Text(
-                    '武汉市优秀教师',
+                    User.shared().remarks,
                     style: TextStyle(
                         color: Color.fromRGBO(15, 32, 67, 1),
                         fontSize: 10.sp,
@@ -93,11 +115,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: _setLabelsWithPath(
                       'assets/icons/my_icon_a@3x.png', '我的班级', 0),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 133.w),
+                  child: _setLabelsWithPath(
+                      'assets/icons/my_icon_a@3x.png', '我的班级', 0),
+                ),
                 //我的通知
                 Padding(
                   padding: EdgeInsets.only(top: 187.w),
                   child: _setLabelsWithPath(
                       'assets/icons/my_icon_b@3x.png', '我的通知', 1),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 130.w, top: 200.w),
+                  child: _buildCount(notificationCount),
                 ),
                 //我的积分
                 Padding(
@@ -162,7 +193,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: EdgeInsets.only(top: 403.w),
                   child: _setLabelsWithPath(
-                      'assets/icons/my_icon_f@3x.png', '学生评语', 4),
+                      'assets/icons/my_icon_f@3x.png', '老师评语', 4),
                 ),
               ],
             ),
@@ -170,6 +201,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
         )
       ],
     ));
+  }
+
+  Widget _buildCount(String count) {
+    if (count == '0') {
+      return Container(
+        width: 0,
+        height: 0,
+      );
+    } else {
+      return Padding(
+        padding: EdgeInsets.only(left: 30.w, top: 3.w),
+        child: Container(
+          width: 20.w,
+          height: 20.w,
+          decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.circular(10.w),
+          ),
+          child: Center(
+            child: Text(
+              count,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 12.sp,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
   }
 
   Widget _setLabelsWithPath(String path, String title, int count) {

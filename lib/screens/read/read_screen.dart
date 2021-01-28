@@ -56,10 +56,14 @@ class _ReadScreenState extends State<ReadScreen>
           body: TabBarView(
             children: <Widget>[
               Container(
-                child: ListViewBookPage(),
+                child: ListViewBookPage(
+                  bookType: '1',
+                ),
               ),
               Container(
-                child: ListViewBookPage(),
+                child: ListViewBookPage(
+                  bookType: '2',
+                ),
               ),
             ],
           ),

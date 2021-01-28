@@ -21,7 +21,7 @@ class RegisterChooseScreen extends StatelessWidget {
           color: Color.fromRGBO(155, 157, 161, 1),
           iconSize: 28.0,
           onPressed: () {
-            Navigator.pop(context);
+            //Navigator.pop(context);
           },
         ),
       ),

@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.fvp.sip.ringTone;
+import com.idcmeeting.library.core.MeetingEntity;
 import com.idcmeeting.library.message.MessageProcessLoop;
 import com.idcmeeting.library.message.agent.CallFailedAgent;
 import com.idcmeeting.library.message.agent.CallHangupRingAgent;
@@ -32,8 +32,9 @@ import com.idcmeeting.library.message.agent.CallinConnectAgent;
 import com.idcmeeting.library.message.agent.CalloutConnectAgent;
 import com.idcmeeting.library.message.agent.CalloutNoanswerAgent;
 import com.idcmeeting.library.message.agent.CalloutRejectAgent;
-import com.idcmeeting.library.utils.SharedPreferencesUtil;
 import com.idcvideo.httplibrary.core.HkhKeyInfo;
+import com.idcvideo.httplibrary.utils.LogUtils;
+import com.idcmeeting.library.utils.SharedPreferencesUtil;
 import com.idcvideo.httplibrary.utils.WaitMeetingToast;
 import com.idcvideo.meetinglibrary.R;
 import com.idcvideo.meetinglibrary.core.BridgeControl;
@@ -265,6 +266,10 @@ public class Beingcalled_activity extends SActivity implements View.OnClickListe
                             mRingSound.stopRingTone();
                             mRingSound = null;
                         }
+                        if (mp != null) {
+                            mp.stop();
+                            mp = null;
+                        }
                         BridgeControl.CallHangUp();
                         Toast.makeText(Beingcalled_activity.this, getString(R.string.being_activity_message_passwd_end), Toast.LENGTH_SHORT).show();
                         if (SHOW_ANIMATION) {
@@ -283,6 +288,10 @@ public class Beingcalled_activity extends SActivity implements View.OnClickListe
                         if (mRingSound != null) {
                             mRingSound.stopRingTone();
                             mRingSound = null;
+                        }
+                        if (mp != null) {
+                            mp.stop();
+                            mp = null;
                         }
                         if (SHOW_ANIMATION) {
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -359,6 +368,10 @@ public class Beingcalled_activity extends SActivity implements View.OnClickListe
                     mRingSound.stopRingTone();
                     mRingSound = null;
                 }
+                if (mp != null) {
+                    mp.stop();
+                    mp = null;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 CrashReport.postCatchedException(e);
@@ -367,6 +380,10 @@ public class Beingcalled_activity extends SActivity implements View.OnClickListe
             if (mRingSound != null) {
                 mRingSound.stopRingTone();
                 mRingSound = null;
+            }
+            if (mp != null) {
+                mp.stop();
+                mp = null;
             }
             BridgeControl.CallHangUp();
             Toast.makeText(this, getString(R.string.being_activity_message_passwd_hang), Toast.LENGTH_SHORT).show();
@@ -382,6 +399,10 @@ public class Beingcalled_activity extends SActivity implements View.OnClickListe
             if (mRingSound != null) {
                 mRingSound.stopRingTone();
                 mRingSound = null;
+            }
+            if (mp != null) {
+                mp.stop();
+                mp = null;
             }
             BridgeControl.CallHangUp();
             String s = tv_callstate.getText().toString();
@@ -427,6 +448,10 @@ public class Beingcalled_activity extends SActivity implements View.OnClickListe
         if (mRingSound != null) {
             mRingSound.stopRingTone();
             mRingSound = null;
+        }
+        if (mp != null) {
+            mp.stop();
+            mp = null;
         }
         super.onDestroy();
         Log.i(TAG, "onDestroy success.");

@@ -25,7 +25,8 @@
             android:launchMode="singleTop"
             android:supportsPictureInPicture="true"
             android:exported="true"
-            android:theme="@style/Transparent" />
+            android:theme="@style/Transparent"
+            android:screenOrientation="sensorLandscape"/>
 
         <activity
             android:name="com.idcvideo.meetinglibrary.activity.Beingcalled_activity"
@@ -33,7 +34,17 @@
             android:excludeFromRecents="true"
             android:theme="@style/MeetingAppTheme"
             android:exported="true"/>
-
+        <activity android:name=".activity.PictureWatchActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
 
 </manifest>

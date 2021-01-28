@@ -34,24 +34,24 @@ public final class R {
         public static final int BaseQuickAdapter_dragging_support = 0x7f080002;
         public static final int BaseQuickAdapter_swiping_support = 0x7f080003;
         public static final int BaseQuickAdapter_viewholder_support = 0x7f080004;
-        public static final int load_more_load_end_view = 0x7f0800ed;
-        public static final int load_more_load_fail_view = 0x7f0800ee;
-        public static final int load_more_loading_view = 0x7f0800ef;
-        public static final int loading_progress = 0x7f0800f0;
-        public static final int loading_text = 0x7f0800f1;
-        public static final int tv_prompt = 0x7f08024c;
+        public static final int load_more_load_end_view = 0x7f080119;
+        public static final int load_more_load_fail_view = 0x7f08011a;
+        public static final int load_more_loading_view = 0x7f08011b;
+        public static final int loading_progress = 0x7f08011c;
+        public static final int loading_text = 0x7f08011d;
+        public static final int tv_prompt = 0x7f08028a;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int brvah_quick_view_load_more = 0x7f0b002d;
+        public static final int brvah_quick_view_load_more = 0x7f0b002f;
     }
     public static final class string {
         private string() {}
 
-        public static final int brvah_app_name = 0x7f0d0056;
-        public static final int brvah_load_end = 0x7f0d0057;
-        public static final int brvah_load_failed = 0x7f0d0058;
-        public static final int brvah_loading = 0x7f0d0059;
+        public static final int brvah_app_name = 0x7f0d005f;
+        public static final int brvah_load_end = 0x7f0d0060;
+        public static final int brvah_load_failed = 0x7f0d0061;
+        public static final int brvah_loading = 0x7f0d0062;
     }
 }

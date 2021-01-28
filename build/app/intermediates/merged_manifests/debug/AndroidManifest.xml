@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.Cloudgrain_teacher_teach"
+    package="com.example.testtttt"
     android:versionCode="1"
     android:versionName="1.0.0" >
 
@@ -19,29 +19,16 @@
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here.
     -->
-    <!-- 好开会权限 start -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <uses-feature android:name="android.hardware.camera" /> <!-- Optional. Required for location feature -->
-    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 好开会权限 end -->
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -63,14 +50,13 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
-
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Cloudgrain_teacher_teach" >
+        android:label="Cloudgrain_teacher_teach"
+        android:usesCleartextTraffic="true" >
         <activity
             android:name="com.example.Cloudgrain_teacher_teach.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -105,6 +91,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.Cloudgrain_teacher_teach.PushActivity" />
         <!--
              Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
@@ -118,6 +105,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:launchMode="singleTop"
+            android:screenOrientation="sensorLandscape"
             android:supportsPictureInPicture="true"
             android:theme="@style/Transparent" />
         <activity
@@ -125,7 +113,20 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:excludeFromRecents="true"
             android:exported="true"
-            android:theme="@style/MeetingAppTheme" /> <!-- android:screenOrientation="landscape" -->
+            android:theme="@style/MeetingAppTheme" />
+        <activity
+            android:name="com.idcvideo.meetinglibrary.activity.PictureWatchActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.testtttt.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider> <!-- android:screenOrientation="landscape" -->
         <activity
             android:name="com.idcvideo.meetinglibrary.activity.MeetingTaskItemActivity"
             android:theme="@style/ActivityDialog" />
@@ -143,9 +144,13 @@
             </intent-filter>
         </service>
 
+        <meta-data
+            android:name="flutterProjectType"
+            android:value="module" />
+
         <provider
             android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-            android:authorities="com.example.Cloudgrain_teacher_teach.flutter.image_provider"
+            android:authorities="com.example.testtttt.flutter.image_provider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -162,7 +167,7 @@
 
         <provider
             android:name="com.blankj.utilcode.util.Utils$FileProvider4UtilCode"
-            android:authorities="com.example.Cloudgrain_teacher_teach.utilcode.provider"
+            android:authorities="com.example.testtttt.utilcode.provider"
             android:grantUriPermissions="true"
             android:multiprocess="true" >
             <meta-data
@@ -174,9 +179,15 @@
             android:name="com.blankj.utilcode.util.BusUtils$ServerService"
             android:exported="true" >
             <intent-filter>
-                <action android:name="com.example.Cloudgrain_teacher_teach.messenger" />
+                <action android:name="com.example.testtttt.messenger" />
             </intent-filter>
         </service>
+
+        <provider
+            android:name="razerdp.basepopup.BasePopupInitializer"
+            android:authorities="com.github.razerdp.com.example.testtttt.BasePopupInitializer"
+            android:exported="false"
+            android:multiprocess="true" />
     </application>
 
 </manifest>

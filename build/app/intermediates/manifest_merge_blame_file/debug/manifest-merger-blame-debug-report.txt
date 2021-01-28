@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.Cloudgrain_teacher_teach"
+3    package="com.example.testtttt"
 4    android:versionCode="1"
 5    android:versionName="1.0.0" >
 6
@@ -12,8 +12,8 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:29:5-67
-14-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:29:22-64
+14-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:9:5-67
+14-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:9:22-64
 15    <!--
 16     io.flutter.app.FlutterApplication is an android.app.Application that
 17         calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -21,329 +21,335 @@
 19         additional functionality it is fine to subclass or reimplement
 20         FlutterApplication and put your custom class here.
 21    -->
-22    <!-- 好开会权限 start -->
-23    <uses-permission android:name="android.permission.READ_CONTACTS" />
-23-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:11:5-72
-23-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:11:22-69
-24    <uses-permission android:name="android.permission.CAMERA" />
-24-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:12:5-65
-24-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:12:22-62
-25    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-25-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:13:5-71
-25-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:13:22-68
+22    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+22-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:8:5-75
+22-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:8:22-72
+23    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+23-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:10:5-76
+23-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:10:22-73
+24    <uses-permission android:name="android.permission.VIBRATE" />
+24-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:11:5-66
+24-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:11:22-63
+25    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+25-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:12:5-80
+25-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:12:22-77
 26    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-26-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:14:5-81
-26-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:14:22-78
-27    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-27-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:15:5-80
-27-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:15:22-77
-28    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-28-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:16:5-75
-28-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:16:22-72
-29    <uses-permission android:name="android.permission.READ_CONTACTS" />
-29-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:11:5-72
-29-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:11:22-69
-30    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-30-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:18:5-79
-30-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:18:22-76
-31    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-31-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:19:5-76
-31-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:19:22-73
-32    <uses-permission android:name="android.permission.BLUETOOTH" />
-32-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:20:5-68
-32-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:20:22-65
-33    <uses-permission android:name="android.permission.VIBRATE" />
-33-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:21:5-66
-33-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:21:22-63
-34    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-34-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:22:5-75
-34-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:22:22-72
-35
-36    <uses-feature android:name="android.hardware.camera" /> <!-- Optional. Required for location feature -->
-36-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:23:5-60
-36-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:23:19-57
-37    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 好开会权限 end -->
-37-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:25:5-70
-37-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:25:19-67
-38    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-38-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:16:5-75
-38-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:16:22-72
-39    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-39-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:19:5-76
-39-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:19:22-73
-40    <uses-permission android:name="android.permission.VIBRATE" />
-40-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:21:5-66
-40-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:21:22-63
-41    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-41-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:15:5-80
-41-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:15:22-77
-42    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-42-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:14:5-81
-42-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:14:22-78
-43    <uses-permission android:name="android.permission.READ_CONTACTS" />
-43-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:11:5-72
-43-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:11:22-69
-44    <uses-permission android:name="android.permission.CAMERA" />
-44-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:12:5-65
-44-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:12:22-62
-45    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-45-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:13:5-71
-45-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:13:22-68
+26-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:13:5-81
+26-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:13:22-78
+27    <uses-permission android:name="android.permission.READ_CONTACTS" />
+27-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:14:5-72
+27-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:14:22-69
+28    <uses-permission android:name="android.permission.CAMERA" />
+28-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:15:5-65
+28-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:15:22-62
+29
+30    <uses-feature android:name="android.hardware.camera" />
+30-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:16:5-60
+30-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:16:19-57
+31
+32    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+32-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:17:5-71
+32-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:17:22-68
+33    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+33-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:18:5-79
+33-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:18:22-76
+34    <uses-permission android:name="android.permission.BLUETOOTH" />
+34-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:19:5-68
+34-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:19:22-65
+35    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 以下为需要的基本权限，需要自行添加至您的AndroidManifest文件中 start -->
+35-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:20:5-75
+35-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:20:22-72
+36    <uses-permission android:name="android.permission.WAKE_LOCK" />
+36-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:22:5-68
+36-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:22:22-65
+37    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
+37-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:23:5-82
+37-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:23:22-79
+38    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
+38-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:24:5-84
+38-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:24:22-81
+39    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL" />
+39-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:25:5-84
+39-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:25:22-81
+40    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
+40-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:26:5-85
+40-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:26:22-82
+41    <uses-permission android:name="android.permission.GET_TASKS" />
+41-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:27:5-68
+41-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:27:22-65
+42    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 配网所需权限 -->
+42-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:28:5-81
+42-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:28:22-78
+43    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+43-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:31:5-79
+43-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:31:22-76
+44    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+44-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:32:5-76
+44-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:32:22-73
+45    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+45-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:33:5-79
+45-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:33:22-76
 46    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 46-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:18:5-79
 46-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:18:22-76
-47    <uses-permission android:name="android.permission.BLUETOOTH" />
-47-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:20:5-68
-47-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:20:22-65
-48    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 以下为需要的基本权限，需要自行添加至您的AndroidManifest文件中 start -->
-48-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:22:5-75
-48-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:22:22-72
-49    <uses-permission android:name="android.permission.WAKE_LOCK" />
-49-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:41:5-68
-49-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:41:22-65
-50    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
-50-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:42:5-82
-50-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:42:22-79
-51    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
-51-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:43:5-84
-51-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:43:22-81
-52    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL" />
-52-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:44:5-84
-52-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:44:22-81
-53    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
-53-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:45:5-85
-53-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:45:22-82
-54    <uses-permission android:name="android.permission.GET_TASKS" />
-54-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:46:5-68
-54-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:46:22-65
-55    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 配网所需权限 -->
-55-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:47:5-81
-55-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:47:22-78
-56    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-56-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:50:5-79
-56-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:50:22-76
-57    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-57-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:51:5-76
-57-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:51:22-73
-58    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-58-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:52:5-79
-58-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:52:22-76
-59    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-59-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:18:5-79
-59-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:18:22-76
-60    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" /> <!-- 对讲所需权限 -->
-60-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:54:5-86
-60-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:54:22-83
-61    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-61-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:56:5-80
-61-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:56:22-77
-62
-63    <uses-feature android:name="android.hardware.camera" />
-63-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:23:5-60
-63-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:23:19-57
-64    <uses-feature android:name="android.hardware.camera.autofocus" />
-64-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:25:5-70
-64-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:25:19-67
-65
-66    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
-66-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:61:5-63:47
-66-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:62:9-70
+47    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" /> <!-- 对讲所需权限 -->
+47-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:35:5-86
+47-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:35:22-83
+48    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+48-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:37:5-80
+48-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:37:22-77
+49
+50    <uses-feature android:name="android.hardware.camera" />
+50-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:16:5-60
+50-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:16:19-57
+51    <uses-feature android:name="android.hardware.camera.autofocus" />
+51-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:40:5-70
+51-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:40:19-67
+52
+53    <application
+53-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:41:5-81:19
+54        android:name="io.flutter.app.FlutterApplication"
+54-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:42:9-57
+55        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+55-->[androidx.core:core:1.1.0] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/6b399c2363bb098ebde1725d903cbda0/core-1.1.0/AndroidManifest.xml:24:18-86
+56        android:debuggable="true"
+57        android:icon="@mipmap/ic_launcher"
+57-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:44:9-43
+58        android:label="Cloudgrain_teacher_teach"
+58-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:43:9-49
+59        android:usesCleartextTraffic="true" >
+59-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:45:9-44
+60        <activity
+60-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:46:9-74:20
+61            android:name="com.example.Cloudgrain_teacher_teach.MainActivity"
+61-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:47:13-77
+62            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+62-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:50:13-163
+63            android:hardwareAccelerated="true"
+63-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:51:13-47
+64            android:launchMode="singleTop"
+64-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:48:13-43
+65            android:theme="@style/LaunchTheme"
+65-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:49:13-47
+66            android:windowSoftInputMode="adjustResize" >
+66-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:52:13-55
 67
-68    <application
-68-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:64:5-102:19
-69        android:name="io.flutter.app.FlutterApplication"
-69-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:65:9-57
-70        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-70-->[androidx.core:core:1.1.0] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/6b399c2363bb098ebde1725d903cbda0/core-1.1.0/AndroidManifest.xml:24:18-86
-71        android:debuggable="true"
-72        android:icon="@mipmap/ic_launcher"
-72-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:67:9-43
-73        android:label="Cloudgrain_teacher_teach" >
-73-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:66:9-49
-74        <activity
-74-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:68:9-96:20
-75            android:name="com.example.Cloudgrain_teacher_teach.MainActivity"
-75-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:69:13-41
-76            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-76-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:72:13-163
-77            android:hardwareAccelerated="true"
-77-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:73:13-47
-78            android:launchMode="singleTop"
-78-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:70:13-43
-79            android:theme="@style/LaunchTheme"
-79-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:71:13-47
-80            android:windowSoftInputMode="adjustResize" >
-80-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:74:13-55
-81
-82            <!--
-83                 Specifies an Android theme to apply to this Activity as soon as
-84                 the Android process has started. This theme is visible to the user
-85                 while the Flutter UI initializes. After that, this theme continues
-86                 to determine the Window background behind the Flutter UI.
-87            -->
-88            <meta-data
-88-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:79:13-82:17
-89                android:name="io.flutter.embedding.android.NormalTheme"
-89-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:80:15-70
-90                android:resource="@style/NormalTheme" />
-90-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:81:15-52
-91            <!--
-92                 Displays an Android View that continues showing the launch screen
-93                 Drawable until Flutter paints its first frame, then this splash
-94                 screen fades out. A splash screen is useful to avoid any visual
-95                 gap between the end of Android's launch screen and the painting of
-96                 Flutter's first frame.
-97            -->
-98            <meta-data
-98-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:88:13-91:17
-99                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-99-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:89:15-79
-100                android:resource="@drawable/launch_background" />
-100-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:90:15-61
-101
-102            <intent-filter>
-102-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:92:13-95:29
-103                <action android:name="android.intent.action.MAIN" />
-103-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:93:17-68
-103-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:93:25-66
-104
-105                <category android:name="android.intent.category.LAUNCHER" />
-105-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:94:17-76
-105-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:94:27-74
-106            </intent-filter>
-107        </activity>
-108        <!--
-109             Don't delete the meta-data below.
-110             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-111        -->
-112        <meta-data
-112-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:99:9-101:33
-113            android:name="flutterEmbedding"
-113-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:100:13-44
-114            android:value="2" />
-114-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:101:13-30
-115
-116        <activity
-116-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:29:9-35:50
-117            android:name="com.idcvideo.meetinglibrary.activity.MeetingActivity"
-117-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:30:13-80
-118            android:configChanges="orientation|keyboardHidden|screenSize"
-118-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:31:13-74
-119            android:exported="true"
-119-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:32:13-36
-120            android:launchMode="singleTop"
-120-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:33:13-43
-121            android:supportsPictureInPicture="true"
-121-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-52
-122            android:theme="@style/Transparent" />
-122-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:35:13-47
-123        <activity
-123-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:36:9-41:54
-124            android:name="com.idcvideo.meetinglibrary.activity.Beingcalled_activity"
-124-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:37:13-85
-125            android:configChanges="orientation|keyboardHidden|screenSize"
-125-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:38:13-74
-126            android:excludeFromRecents="true"
-126-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-46
-127            android:exported="true"
-127-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:40:13-36
-128            android:theme="@style/MeetingAppTheme" /> <!-- android:screenOrientation="landscape" -->
-128-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:41:13-51
-129        <activity
-129-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:30:9-32:53
-130            android:name="com.idcvideo.meetinglibrary.activity.MeetingTaskItemActivity"
-130-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:31:13-88
-131            android:theme="@style/ActivityDialog" />
-131-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:32:13-50
-132        <activity
-132-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:33:9-35:53
-133            android:name="com.idcvideo.meetinglibrary.activity.BlendLevelItemActivity"
-133-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:34:13-87
-134            android:theme="@style/ActivityDialog" />
-134-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:35:13-50
-135        <activity
-135-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:36:9-39:53
-136            android:name="com.idcvideo.meetinglibrary.activity.CreateTaskDialogActivity"
-136-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:37:13-89
-137            android:screenOrientation="landscape"
-137-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:38:13-50
-138            android:theme="@style/ActivityDialog" />
-138-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:39:13-50
-139
-140        <service android:name="com.idcvideo.meetinglibrary.screenshare.DesktopShareService" >
-140-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:41:9-45:19
-140-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:41:18-92
-141            <intent-filter android:priority="1000" >
-141-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:42:13-44:29
-141-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:42:28-51
-142                <action android:name="com.idcvideo.share_desktop.myservicerecorder" />
-142-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:43:17-87
-142-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/44552803a37fb2d25742858971fe5897/jetified-CommunicateLibrary-release/AndroidManifest.xml:43:25-84
-143            </intent-filter>
-144        </service>
-145
-146        <provider
-146-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:9-19:20
-147            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-147-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-82
-148            android:authorities="com.example.Cloudgrain_teacher_teach.flutter.image_provider"
-148-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-74
-149            android:exported="false"
-149-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
-150            android:grantUriPermissions="true" >
-150-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-47
-151            <meta-data
-151-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-18:75
-152                android:name="android.support.FILE_PROVIDER_PATHS"
-152-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-67
-153                android:resource="@xml/flutter_image_picker_file_paths" />
-153-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-72
-154        </provider>
-155
-156        <activity
-156-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:10:9-15:75
-157            android:name="com.blankj.utilcode.util.PermissionUtils$PermissionActivity"
-157-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:11:13-87
-158            android:configChanges="orientation|keyboardHidden|screenSize"
-158-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:12:13-74
-159            android:multiprocess="true"
-159-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:13:13-40
-160            android:theme="@style/ActivityTranslucent"
-160-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:14:13-55
-161            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
-161-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:15:13-72
-162
-163        <provider
-163-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:17:9-25:20
-164            android:name="com.blankj.utilcode.util.Utils$FileProvider4UtilCode"
-164-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:18:13-80
-165            android:authorities="com.example.Cloudgrain_teacher_teach.utilcode.provider"
-165-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:19:13-69
-166            android:grantUriPermissions="true"
-166-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:20:13-47
-167            android:multiprocess="true" >
-167-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:21:13-40
-168            <meta-data
-168-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-18:75
-169                android:name="android.support.FILE_PROVIDER_PATHS"
-169-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-67
-170                android:resource="@xml/util_code_provider_paths" />
-170-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-72
-171        </provider>
-172
-173        <service
-173-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:27:9-33:19
-174            android:name="com.blankj.utilcode.util.BusUtils$ServerService"
-174-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:28:13-75
-175            android:exported="true" >
-175-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:29:13-36
-176            <intent-filter>
-176-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:30:13-32:29
-177                <action android:name="com.example.Cloudgrain_teacher_teach.messenger" />
-177-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:31:17-69
-177-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/117debd255017884459ec2e9723123e1/jetified-utilcode-1.24.2/AndroidManifest.xml:31:25-66
-178            </intent-filter>
-179        </service>
-180    </application>
-181
-182</manifest>
+68            <!--
+69                 Specifies an Android theme to apply to this Activity as soon as
+70                 the Android process has started. This theme is visible to the user
+71                 while the Flutter UI initializes. After that, this theme continues
+72                 to determine the Window background behind the Flutter UI.
+73            -->
+74            <meta-data
+74-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:57:13-60:17
+75                android:name="io.flutter.embedding.android.NormalTheme"
+75-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:58:15-70
+76                android:resource="@style/NormalTheme" />
+76-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:59:15-52
+77            <!--
+78                 Displays an Android View that continues showing the launch screen
+79                 Drawable until Flutter paints its first frame, then this splash
+80                 screen fades out. A splash screen is useful to avoid any visual
+81                 gap between the end of Android's launch screen and the painting of
+82                 Flutter's first frame.
+83            -->
+84            <meta-data
+84-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:66:13-69:17
+85                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+85-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:67:15-79
+86                android:resource="@drawable/launch_background" />
+86-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:68:15-61
+87
+88            <intent-filter>
+88-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:70:13-73:29
+89                <action android:name="android.intent.action.MAIN" />
+89-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:71:17-68
+89-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:71:25-66
+90
+91                <category android:name="android.intent.category.LAUNCHER" />
+91-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:72:17-76
+91-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:72:27-74
+92            </intent-filter>
+93        </activity>
+94        <activity android:name="com.example.Cloudgrain_teacher_teach.PushActivity" />
+94-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:75:9-85
+94-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:75:19-83
+95        <!--
+96             Don't delete the meta-data below.
+97             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+98        -->
+99        <meta-data
+99-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:78:9-80:33
+100            android:name="flutterEmbedding"
+100-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:79:13-44
+101            android:value="2" />
+101-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/app/src/main/AndroidManifest.xml:80:13-30
+102
+103        <activity
+103-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:29:9-36:50
+104            android:name="com.idcvideo.meetinglibrary.activity.MeetingActivity"
+104-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:30:13-80
+105            android:configChanges="orientation|keyboardHidden|screenSize"
+105-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:31:13-74
+106            android:exported="true"
+106-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:32:13-36
+107            android:launchMode="singleTop"
+107-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:33:13-43
+108            android:screenOrientation="sensorLandscape"
+108-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-56
+109            android:supportsPictureInPicture="true"
+109-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:35:13-52
+110            android:theme="@style/Transparent" />
+110-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:36:13-47
+111        <activity
+111-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:37:9-42:54
+112            android:name="com.idcvideo.meetinglibrary.activity.Beingcalled_activity"
+112-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:38:13-85
+113            android:configChanges="orientation|keyboardHidden|screenSize"
+113-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-74
+114            android:excludeFromRecents="true"
+114-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:40:13-46
+115            android:exported="true"
+115-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:41:13-36
+116            android:theme="@style/MeetingAppTheme" />
+116-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:42:13-51
+117        <activity
+117-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:43:9-45:72
+118            android:name="com.idcvideo.meetinglibrary.activity.PictureWatchActivity"
+118-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:44:13-85
+119            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+119-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:45:13-69
+120
+121        <provider
+121-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:47:9-55:20
+122            android:name="androidx.core.content.FileProvider"
+122-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:48:13-62
+123            android:authorities="com.example.testtttt.fileprovider"
+123-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:49:13-64
+124            android:exported="false"
+124-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:50:13-37
+125            android:grantUriPermissions="true" >
+125-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:51:13-47
+126            <meta-data
+126-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-54:58
+127                android:name="android.support.FILE_PROVIDER_PATHS"
+127-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:53:17-67
+128                android:resource="@xml/provider_paths" />
+128-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:54:17-55
+129        </provider> <!-- android:screenOrientation="landscape" -->
+130        <activity
+130-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:30:9-32:53
+131            android:name="com.idcvideo.meetinglibrary.activity.MeetingTaskItemActivity"
+131-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:31:13-88
+132            android:theme="@style/ActivityDialog" />
+132-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:32:13-50
+133        <activity
+133-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:33:9-35:53
+134            android:name="com.idcvideo.meetinglibrary.activity.BlendLevelItemActivity"
+134-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:34:13-87
+135            android:theme="@style/ActivityDialog" />
+135-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:35:13-50
+136        <activity
+136-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:36:9-39:53
+137            android:name="com.idcvideo.meetinglibrary.activity.CreateTaskDialogActivity"
+137-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:37:13-89
+138            android:screenOrientation="landscape"
+138-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:38:13-50
+139            android:theme="@style/ActivityDialog" />
+139-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:39:13-50
+140
+141        <service android:name="com.idcvideo.meetinglibrary.screenshare.DesktopShareService" >
+141-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:41:9-45:19
+141-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:41:18-92
+142            <intent-filter android:priority="1000" >
+142-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:42:13-44:29
+142-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:42:28-51
+143                <action android:name="com.idcvideo.share_desktop.myservicerecorder" />
+143-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:43:17-87
+143-->[:CommunicateLibrary-release:] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/855fa35ef98f72f91504a41ad9034502/jetified-CommunicateLibrary-release/AndroidManifest.xml:43:25-84
+144            </intent-filter>
+145        </service>
+146
+147        <meta-data
+147-->[:flutter] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/flutter/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-18:38
+148            android:name="flutterProjectType"
+148-->[:flutter] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/flutter/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-46
+149            android:value="module" />
+149-->[:flutter] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/flutter/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-35
+150
+151        <provider
+151-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:9-19:20
+152            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+152-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-82
+153            android:authorities="com.example.testtttt.flutter.image_provider"
+153-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-74
+154            android:exported="false"
+154-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
+155            android:grantUriPermissions="true" >
+155-->[:image_picker] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-47
+156            <meta-data
+156-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-54:58
+157                android:name="android.support.FILE_PROVIDER_PATHS"
+157-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:53:17-67
+158                android:resource="@xml/flutter_image_picker_file_paths" />
+158-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:54:17-55
+159        </provider>
+160
+161        <activity
+161-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:10:9-15:75
+162            android:name="com.blankj.utilcode.util.PermissionUtils$PermissionActivity"
+162-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:11:13-87
+163            android:configChanges="orientation|keyboardHidden|screenSize"
+163-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:12:13-74
+164            android:multiprocess="true"
+164-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:13:13-40
+165            android:theme="@style/ActivityTranslucent"
+165-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:14:13-55
+166            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+166-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:15:13-72
+167
+168        <provider
+168-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:17:9-25:20
+169            android:name="com.blankj.utilcode.util.Utils$FileProvider4UtilCode"
+169-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:18:13-80
+170            android:authorities="com.example.testtttt.utilcode.provider"
+170-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:19:13-69
+171            android:grantUriPermissions="true"
+171-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:20:13-47
+172            android:multiprocess="true" >
+172-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:21:13-40
+173            <meta-data
+173-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-54:58
+174                android:name="android.support.FILE_PROVIDER_PATHS"
+174-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:53:17-67
+175                android:resource="@xml/util_code_provider_paths" />
+175-->[:MeetingLibrary] /Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/build/MeetingLibrary/intermediates/library_manifest/debug/AndroidManifest.xml:54:17-55
+176        </provider>
+177
+178        <service
+178-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:27:9-33:19
+179            android:name="com.blankj.utilcode.util.BusUtils$ServerService"
+179-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:28:13-75
+180            android:exported="true" >
+180-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:29:13-36
+181            <intent-filter>
+181-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:30:13-32:29
+182                <action android:name="com.example.testtttt.messenger" />
+182-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:31:17-69
+182-->[com.blankj:utilcode:1.24.2] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e1b875690d30d27d9cfc2e2f540cc311/jetified-utilcode-1.24.2/AndroidManifest.xml:31:25-66
+183            </intent-filter>
+184        </service>
+185
+186        <provider
+186-->[com.github.razerdp:BasePopup:2.2.10] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e80e86cda0b814914d7b8ae28ef0bbf5/jetified-BasePopup-2.2.10/AndroidManifest.xml:12:9-16:43
+187            android:name="razerdp.basepopup.BasePopupInitializer"
+187-->[com.github.razerdp:BasePopup:2.2.10] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e80e86cda0b814914d7b8ae28ef0bbf5/jetified-BasePopup-2.2.10/AndroidManifest.xml:13:13-66
+188            android:authorities="com.github.razerdp.com.example.testtttt.BasePopupInitializer"
+188-->[com.github.razerdp:BasePopup:2.2.10] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e80e86cda0b814914d7b8ae28ef0bbf5/jetified-BasePopup-2.2.10/AndroidManifest.xml:14:13-91
+189            android:exported="false"
+189-->[com.github.razerdp:BasePopup:2.2.10] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e80e86cda0b814914d7b8ae28ef0bbf5/jetified-BasePopup-2.2.10/AndroidManifest.xml:15:13-37
+190            android:multiprocess="true" />
+190-->[com.github.razerdp:BasePopup:2.2.10] /Users/angzeng/.gradle/caches/transforms-2/files-2.1/e80e86cda0b814914d7b8ae28ef0bbf5/jetified-BasePopup-2.2.10/AndroidManifest.xml:16:13-40
+191    </application>
+192
+193</manifest>

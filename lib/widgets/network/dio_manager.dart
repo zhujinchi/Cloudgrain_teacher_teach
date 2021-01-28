@@ -17,8 +17,24 @@ class DioManager {
     dio.options.connectTimeout = 5000;
     dio.options.receiveTimeout = 3000;
     dio.interceptors.add(LogInterceptor(requestBody: true));
-    //dio.options.headers = httpHeaders;
+    dio.options.headers = httpHeaders;
+
     //  dio.interceptors.add(CookieManager(CookieJar()));//缓存相关类，具体设置见https://github.com/flutterchina/cookie_jar
+  }
+
+  //设置BaseUrl
+  //0: "http://yundou.skyline.name:18001" ; 1" "http://yundou.skyline.name:18002"
+  setBaseUrl(int baseurltype) {
+    if (baseurltype == 0) {
+      dio.options.baseUrl = "http://yundou.skyline.name:18001";
+    } else {
+      dio.options.baseUrl = "http://yundou.skyline.name:18002";
+    }
+  }
+
+  //设置自定义请求头
+  setHeaders(Map<String, dynamic> selfhttpHeaders) {
+    dio.options.headers = selfhttpHeaders;
   }
 
   //get请求
@@ -71,8 +87,13 @@ class DioManager {
     }
 
     String dataStr = json.encode(response.data);
+
     Map<String, dynamic> dataMap = json.decode(dataStr);
-    if (dataMap == null || dataMap['status'] != 200) {
+
+    print('接口返回数据：');
+    print(dataMap.toString());
+
+    if (dataMap == null || dataMap['code'] != 200) {
       _error(errorCallBack, dataMap['msg'].toString());
     } else if (successCallBack != null) {
       successCallBack(dataMap);
@@ -90,6 +111,6 @@ class DioManager {
   Map<String, dynamic> httpHeaders = {
     'Accept': 'application/json,*/*',
     'Content-Type': 'application/json',
-    // 'token': DioUtils.TOKEN
+    //'token': DioUtils.TOKEN
   };
 }

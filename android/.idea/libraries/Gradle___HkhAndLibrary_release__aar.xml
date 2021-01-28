@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: :HkhAndLibrary-release:@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/13a50380cccaae1c764a87ef89354741/jetified-HkhAndLibrary-release/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/13a50380cccaae1c764a87ef89354741/jetified-HkhAndLibrary-release/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/13a50380cccaae1c764a87ef89354741/jetified-HkhAndLibrary-release/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d55ba2636637aaab8df9e88a96442f69/jetified-HkhAndLibrary-release/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d55ba2636637aaab8df9e88a96442f69/jetified-HkhAndLibrary-release/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d55ba2636637aaab8df9e88a96442f69/jetified-HkhAndLibrary-release/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

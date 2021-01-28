@@ -18,6 +18,6 @@ public final class R {
     public static final class xml {
         private xml() {}
 
-        public static final int util_code_provider_paths = 0x7f100001;
+        public static final int util_code_provider_paths = 0x7f100002;
     }
 }

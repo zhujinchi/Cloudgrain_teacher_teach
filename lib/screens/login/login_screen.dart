@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:Cloudgrain_teacher_teach/data/User.dart';
 import 'package:Cloudgrain_teacher_teach/screens/login/register_choose_screen.dart';
 import 'package:Cloudgrain_teacher_teach/widgets/network/dio_manager.dart';
 import 'package:flutter/material.dart';
@@ -16,47 +19,38 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = new GlobalKey<FormState>();
+  final _userIDEditingController = TextEditingController();
+  final _passwordEditingController = TextEditingController();
 
   String _userID;
   String _password;
   bool _isChecked = true;
   bool _isLoading;
   IconData _checkIcon = Icons.check_box;
+  //验证码计时器
+  Timer _countdownTimer;
+  String _originalCountdownStr = '获取验证码';
+  String _codeCountdownStr = '获取验证码';
+  int _countdownNum = 59;
+
+  @override
+  void initState() {
+    super.initState();
+    _userIDEditingController.text = "16532701605";
+    _passwordEditingController.text = "888888";
+  }
+
+  @override
+  void dispose() {
+    _countdownTimer?.cancel();
+    _countdownTimer = null;
+    _userIDEditingController.dispose();
+    _passwordEditingController.dispose();
+    super.dispose();
+  }
 
   void _changeFormToLogin() {
     _formKey.currentState.reset();
-  }
-
-  void _onLogin() {
-    final form = _formKey.currentState;
-    form.save();
-
-    //网络请求
-    FormData params = FormData.fromMap({
-      'userName': 'XH6768768762',
-      'password': 'ad123&368',
-    });
-
-    DioManager.getInstance().post("/user/userName/login", params, (result) {
-      print(result);
-      //请求成功需要做的事
-    }, (error) {
-      print(error + '123');
-      //失败后需要做的事
-    });
-
-    // if (_userID == '') {
-    //   _showMessageDialog('账号不可为空');
-    //   return;
-    // }
-    // if (_password == '') {
-    //   _showMessageDialog('密码不可为空');
-    //   return;
-    // }
-    // if ((_formKey.currentState as FormState).validate()) {
-    //   //验证通过提交数据
-    GotoMainScreen(context, true);
-    // }
   }
 
   void _showMessageDialog(String message) {
@@ -85,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
       height: 40.w,
       padding: EdgeInsets.only(top: 0.w),
       child: new TextFormField(
+        controller: this._userIDEditingController,
         maxLines: 1,
         maxLength: 16,
         keyboardType: TextInputType.phone,
@@ -113,6 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
       height: 40.w,
       padding: EdgeInsets.only(top: 0.w),
       child: new TextFormField(
+        controller: this._passwordEditingController,
         maxLines: 1,
         maxLength: 6,
         maxLengthEnforced: true,
@@ -288,21 +284,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: MaterialButton(
                           child: Text(
-                            '登录',
+                            "登录",
                             style: TextStyle(
                               color: Color.fromRGBO(255, 255, 255, 1),
                               fontFamily: 'PingFangSC-Semibold',
                               fontSize: 16.sp,
                             ),
                           ),
-
+                          disabledColor: Color.fromRGBO(201, 204, 210, 1),
                           color: Color.fromRGBO(30, 94, 255, 1),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6.w)),
                           //borderSide: BorderSide(color: Colors.orange, width: 1),
-                          onPressed: () {
-                            _onLogin();
-                          },
+                          onPressed: _userIDEditingController.text.isNotEmpty &&
+                                  _passwordEditingController.text.isNotEmpty &&
+                                  _isChecked
+                              ? () {
+                                  _onLogin();
+                                }
+                              : null,
                         ),
                       ),
                       Container(
@@ -320,12 +320,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 20.w,
                       child: Center(
                           child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                _codeCountdownStr == _originalCountdownStr
+                                    ? SentVerify(context)
+                                    : {};
+                              },
                               child: Text(
-                                '获取验证码',
+                                _codeCountdownStr,
                                 style: TextStyle(
-                                    color: Color.fromRGBO(0, 81, 255, 1),
-                                    fontSize: 14.sp,
+                                    color: _codeCountdownStr ==
+                                            _originalCountdownStr
+                                        ? Color.fromRGBO(0, 81, 255, 1)
+                                        : Color.fromRGBO(155, 157, 161, 1),
+                                    fontSize: 12.sp,
                                     fontFamily: 'PingFangSC-Regular'),
                               ))))),
               Padding(
@@ -384,8 +391,256 @@ class _LoginScreenState extends State<LoginScreen> {
         )));
   }
 
+  void SentVerify(BuildContext context) {
+    FormData params = FormData.fromMap({
+      'mobilePhone': _userID,
+    });
+
+    DioManager.getInstance().post("/user/sms/verify", params, (result) {
+      print(result);
+      showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text('验证码已发送'),
+            content: Text('\n验证码为888888'),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text('确认'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      reGetCountdown();
+      //验证通过提交数据
+    }, (error) {
+      print(error);
+      showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text('验证码发送失败'),
+            content: Text('\n请重新检查手机号'),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text('确认'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    });
+  }
+
+  void reGetCountdown() {
+    setState(() {
+      if (_countdownTimer != null) {
+        return;
+      }
+      // Timer的第一秒倒计时是有一点延迟的，为了立刻显示效果可以添加下一行。
+      _codeCountdownStr = '${_countdownNum--}秒后重新获取';
+      _countdownTimer = new Timer.periodic(new Duration(seconds: 1), (timer) {
+        setState(() {
+          if (_countdownNum > 0) {
+            _codeCountdownStr = '${_countdownNum--}秒后重新获取';
+          } else {
+            _codeCountdownStr = '获取验证码';
+            _countdownNum = 59;
+            _countdownTimer.cancel();
+            _countdownTimer = null;
+          }
+        });
+      });
+    });
+  }
+
+  void _onLogin() {
+    final form = _formKey.currentState;
+    form.save();
+
+    if (_userID.isEmpty) {
+      showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text('账号密码错误'),
+            content: Text('\n用户账号不能为空'),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text('确认'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    } else if (_password.isEmpty) {
+      showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text('账号密码错误'),
+            content: Text('\n用户密码不能为空'),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text('确认'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    //网络请求
+    FormData params = FormData.fromMap({
+      'mobilePhone': _userID,
+      'verifyCode': _password,
+    });
+    //自定义请求头
+    Map<String, dynamic> httpHeaders = {
+      'Accept': 'application/json,*/*',
+      'Content-Type': 'application/json',
+      'platformType': '5',
+      'termType': 2,
+      //'token': DioUtils.TOKEN
+    };
+    //置入自定义请求头
+    DioManager.getInstance().setHeaders(httpHeaders);
+
+    DioManager.getInstance().post("/user/phone/verifyCode/login", params,
+        (result) {
+      setUserLoginDataWithResult(result);
+      setDataOfDictInfo();
+      setDataOfNotificationCount();
+      //验证通过提交数据
+      GotoMainScreen(context, true);
+    }, (error) {
+      //失败后需要做的事
+      showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text('账号密码错误'),
+            content: Text('\n请验证账号密码后再次输入'),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text('确认'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    });
+  }
+
+  void setDataOfDictInfo() {
+    //网络请求
+    FormData params = FormData.fromMap({});
+    DioManager.getInstance().setBaseUrl(1);
+    //
+    Map<String, dynamic> httpHeaders = {
+      'Accept': 'application/json,*/*',
+      'Content-Type': 'application/json',
+      'accessToken': User.shared().accessToken,
+    };
+
+    DioManager.getInstance().setHeaders(httpHeaders);
+    DioManager.getInstance().get("/sysDict/info", params, (result) {
+      User.shared().sysDictionary = result['data'];
+      User.shared().sysDictionaryCount = User.shared().sysDictionary.length;
+      //验证通过提交数据
+    }, (error) {});
+  }
+
+  void setDataOfNotificationCount() {
+    //网络请求
+    FormData params = FormData.fromMap({
+      'pageNumber': 1,
+      'pageSize': 8,
+      "firstType": "class",
+      "secondType": "studentJoin",
+    });
+
+    DioManager.getInstance().setBaseUrl(1);
+    //
+    Map<String, dynamic> httpHeaders = {
+      'Accept': 'application/json,*/*',
+      'Content-Type': 'application/json',
+      'accessToken': User.shared().accessToken,
+
+      //'token': DioUtils.TOKEN
+    };
+    DioManager.getInstance().setHeaders(httpHeaders);
+    DioManager.getInstance().post("/pushMessage/list", params, (result) {
+      setState(() {
+        dynamic notificationList = result['data']['records'];
+        int count = 0;
+        for (int i = 0; i < notificationList.length; i++) {
+          if (notificationList[i]['readStatus'].toString() == '1') {
+            count++;
+          }
+        }
+        User.shared().eventBus.fire(count.toString());
+      });
+      //验证通过提交数据
+    }, (error) {});
+    //
+  }
+
+  void setUserLoginDataWithResult(dynamic result) {
+    User.shared().id = result['data']['id'];
+    User.shared().userAccount = result['data']['userAccount'];
+    User.shared().userType = result['data']['userType'];
+    User.shared().userMail = result['data']['userMail'];
+    User.shared().userImageId = result['data']['userImageId'];
+    User.shared().imgUrl = result['data']['imgUrl'];
+    User.shared().mobilePhone = result['data']['mobilePhone'];
+    User.shared().actualName = result['data']['actualName'];
+    User.shared().userSex = result['data']['userSex'];
+    User.shared().loginLastAddr = result['data']['loginLastAddr'];
+    User.shared().loginLastTime = result['data']['loginLastTime'];
+    User.shared().nickName = result['data']['nickName'];
+    User.shared().createBy = result['data']['createBy'];
+    User.shared().createDate = result['data']['createDate'];
+    User.shared().updateBy = result['data']['updateBy'];
+    User.shared().updateDate = result['data']['updateDate'];
+    User.shared().remarks = result['data']['remarks'];
+    User.shared().delFlag = result['data']['delFlag'];
+    User.shared().accessToken = result['data']['accessToken'];
+    User.shared().meetingAccount = result['data']['meetingAccount'];
+    User.shared().meetingPassword = result['data']['meetingPassword'];
+    User.shared().registered = result['data']['registered'];
+    User.shared().userFamily = result['data']['userFamily'];
+    User.shared().publicTeacher = result['data']['publicTeacher'];
+    User.shared().userTeacher = result['data']['userTeacher'];
+    User.shared().userStudent = result['data']['userStudent'];
+    User.shared().userTutorNight = result['data']['userTutorNight'];
+
+    User.shared().price = result['data']['userTutorNight']['price'];
+
+    User.shared().classTagDay = DateTime.now();
+  }
+
   void GotoMainScreen(BuildContext context, bool isTeacher) {
-    Navigator.of(context)
-        .push(CupertinoPageRoute(builder: (context) => RegisterChooseScreen()));
+    Navigator.of(context).pushAndRemoveUntil(
+        CupertinoPageRoute(builder: (context) => RegisterChooseScreen()),
+        (route) => route == null);
   }
 }

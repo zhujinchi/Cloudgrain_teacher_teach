@@ -58,9 +58,9 @@
 26-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:19:22-77
 27
 28    <application>
-28-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:21:5-37:19
+28-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:21:5-48:19
 29        <activity
-29-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:22:9-28:50
+29-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:22:9-29:58
 30            android:name="com.idcvideo.meetinglibrary.activity.MeetingActivity"
 30-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:23:13-53
 31            android:configChanges="orientation|keyboardHidden|screenSize"
@@ -69,22 +69,48 @@
 32-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:27:13-36
 33            android:launchMode="singleTop"
 33-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:25:13-43
-34            android:supportsPictureInPicture="true"
-34-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:26:13-52
-35            android:theme="@style/Transparent" />
-35-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:28:13-47
-36        <activity
-36-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:30:9-35:38
-37            android:name="com.idcvideo.meetinglibrary.activity.Beingcalled_activity"
-37-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:31:13-85
-38            android:configChanges="orientation|keyboardHidden|screenSize"
-38-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:32:13-74
-39            android:excludeFromRecents="true"
-39-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:33:13-46
-40            android:exported="true"
-40-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:35:13-36
-41            android:theme="@style/MeetingAppTheme" />
-41-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:34:13-51
-42    </application>
-43
-44</manifest>
+34            android:screenOrientation="sensorLandscape"
+34-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:29:13-56
+35            android:supportsPictureInPicture="true"
+35-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:26:13-52
+36            android:theme="@style/Transparent" />
+36-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:28:13-47
+37        <activity
+37-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:31:9-36:38
+38            android:name="com.idcvideo.meetinglibrary.activity.Beingcalled_activity"
+38-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:32:13-85
+39            android:configChanges="orientation|keyboardHidden|screenSize"
+39-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:33:13-74
+40            android:excludeFromRecents="true"
+40-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:34:13-46
+41            android:exported="true"
+41-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:36:13-36
+42            android:theme="@style/MeetingAppTheme" />
+42-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:35:13-51
+43        <activity
+43-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:37:9-38:71
+44            android:name="com.idcvideo.meetinglibrary.activity.PictureWatchActivity"
+44-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:37:19-64
+45            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+45-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:38:13-69
+46
+47        <provider
+47-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:39:9-47:20
+48            android:name="androidx.core.content.FileProvider"
+48-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:40:13-62
+49            android:authorities="dollar_openBracket_applicationId_closeBracket.fileprovider"
+49-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:41:13-64
+50            android:exported="false"
+50-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:42:13-37
+51            android:grantUriPermissions="true" >
+51-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:43:13-47
+52            <meta-data
+52-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:44:13-46:58
+53                android:name="android.support.FILE_PROVIDER_PATHS"
+53-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:45:17-67
+54                android:resource="@xml/provider_paths" />
+54-->/Users/angzeng/Cloudgrain_project/Cloudgrain_teacher_teach/android/MeetingLibrary/src/main/AndroidManifest.xml:46:17-55
+55        </provider>
+56    </application>
+57
+58</manifest>

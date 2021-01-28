@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:Cloudgrain_teacher_teach/screens/login/splash_screen.dart';
-import 'package:Cloudgrain_teacher_teach/screens/bottom_teacher_screen.dart';
 import 'package:Cloudgrain_teacher_teach/screens/login/splash_screen.dart';
 import 'package:flutter/services.dart';
 

@@ -1,3 +1,4 @@
+import 'package:Cloudgrain_teacher_teach/data/User.dart';
 import 'package:Cloudgrain_teacher_teach/screens/class/class_screen.dart';
 import 'package:Cloudgrain_teacher_teach/screens/home_guidance/home_guidance_screen.dart';
 import 'package:Cloudgrain_teacher_teach/screens/profile/profile_screen.dart';
@@ -12,6 +13,7 @@ class BottomGuidanceScreen extends StatefulWidget {
 
 class _BottomGuidanceScreenState extends State<BottomGuidanceScreen> {
   int _currentTabIndex = 0;
+  String notificationCount = '0';
 
   @override
   void dispose() {
@@ -21,6 +23,12 @@ class _BottomGuidanceScreenState extends State<BottomGuidanceScreen> {
   @override
   void initState() {
     this._currentTabIndex == 0;
+    super.initState();
+    User.shared().notificationBus.on<String>().listen((data) {
+      setState(() {
+        notificationCount = data;
+      });
+    });
   }
 
   @override
@@ -138,6 +146,18 @@ class _BottomGuidanceScreenState extends State<BottomGuidanceScreen> {
                             : Color.fromRGBO(164, 173, 200, 1),
                         fontSize: 12.sp,
                         fontFamily: 'PingFangSC-Regular'),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 45.w, top: 305.w),
+                  child: Container(
+                    width: 5.w,
+                    height: 5.w,
+                    decoration: BoxDecoration(
+                      color:
+                          notificationCount == '0' ? Colors.white : Colors.red,
+                      borderRadius: BorderRadius.circular(2.5.w),
+                    ),
                   ),
                 ),
                 Padding(

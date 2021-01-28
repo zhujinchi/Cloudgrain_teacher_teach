@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8">
+
+    <ImageView
+        android:id="@+id/cloud_class_go_to_back_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/yk_icon_return"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cloud_class_attend_exchange_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/cloud_class_go_to_back_iv"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="150dp"/>
+
+    <EditText
+        android:id="@+id/cloud_class_exchange_edit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="85dp"
+        android:background="@drawable/cloud_class_exchange_edit_background"
+        android:gravity="left"
+        android:hint="输入信息～"
+
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:textColorHint="#9B9DA1" />
+
+    <TextView
+        android:id="@+id/cloud_class_exchange_send_tv"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="38dp"
+        android:background="@drawable/my_class_item_blue"
+        android:gravity="center"
+        android:text="发送"
+        android:textColor="#EBECF0"
+        android:textSize="14sp" />
+</RelativeLayout>

@@ -1,0 +1,1242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/meeting_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- （必须）窗口的根id，监听触摸事件 -->
+
+            <RelativeLayout
+                android:id="@+id/video_rl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true">
+
+                <TextureView
+                    android:id="@+id/meeting_sf_yd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
+
+                <RelativeLayout
+                    android:id="@+id/meeting_local_video_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextureView
+                        android:id="@+id/meeting_texture_bd"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+                </RelativeLayout>
+
+
+                <SurfaceView
+                    android:id="@+id/meeting_sf_bd"
+                    android:layout_width="1px"
+                    android:layout_height="1px" />
+
+                <com.idcvideo.meetinglibrary.view.BlankCanvasView
+                    android:id="@+id/blank_canvas_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true" />
+
+                <FrameLayout
+                    android:id="@+id/meeting_desk_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
+
+
+                <ImageView
+                    android:id="@+id/bd_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/share_bg"
+                    android:visibility="gone" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/net_signal_display"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/net_info_bg"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_30"
+                android:paddingTop="@dimen/dp_40"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/net_info_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/network_info_title"
+                    android:textColor="@color/c2"
+                    android:textSize="@dimen/sp_18" />
+
+
+                <ImageView
+                    android:id="@+id/net_signal_display_exit_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:background="@drawable/net_info_exit_iv"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/net_info_tv"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_40"
+                    android:layout_toLeftOf="@+id/net_signal_display_exit_iv"
+                    android:background="@drawable/net_state_info_bg"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/net_signal_display_shang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:maxLines="1"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_4"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingBottom="@dimen/dp_4"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/banner_text_size" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/new_line_gray" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/net_signal_display_xia"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:maxLines="1"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_4"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingBottom="@dimen/dp_4"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/banner_text_size" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/new_line_gray" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/net_signal_display_yanshi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:maxLines="1"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_4"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingBottom="@dimen/dp_4"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/banner_text_size" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/new_line_gray" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/net_rec_audio_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:maxLines="1"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_4"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingBottom="@dimen/dp_4"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/banner_text_size" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/new_line_gray" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/net_send_audio_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:maxLines="1"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_4"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingBottom="@dimen/dp_4"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/banner_text_size" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/new_line_gray" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/net_rec_video_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:maxLines="1"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_4"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingBottom="@dimen/dp_4"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/banner_text_size" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/new_line_gray" />
+
+                    <LinearLayout
+                        android:id="@+id/show_linear_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/net_send_video_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:maxLines="1"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_4"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingBottom="@dimen/dp_4"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/banner_text_size" />
+                        </RelativeLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/new_line_gray" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/net_rec_data"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:maxLines="1"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_4"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingBottom="@dimen/dp_4"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/banner_text_size" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/new_line_gray" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/net_send_data"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingTop="@dimen/dp_4"
+                                android:paddingBottom="@dimen/dp_4"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/banner_text_size" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/meeting_ll_top"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/meeting_status_bar_bg"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/title_relative_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/title_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/meeting_tv_meetingtheme"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/share_desktop_man_name_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="2dp"
+                            android:text="@string/meeting_activity_share_desktop_man_name"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/meeting_info_imageview"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/meeting_info_top_icon" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true">
+
+                    <ImageView
+                        android:id="@+id/net_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
+                        android:src="@drawable/xinhao_d" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_meeting_sharing"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
+                android:layout_above="@+id/meeting_ll_end"
+                android:layout_marginBottom="@dimen/dp_4"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/btn_sharing_desk"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/pop_fun_bg"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="@string/share_screen"
+                    android:textColor="@color/c2"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/btn_sharing_white_board"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/pop_fun_bg"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="白板"
+                    android:textColor="@color/c2"
+                    android:textSize="@dimen/sp_14" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/meeting_ll_left"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/meeting_ll_end"
+                android:layout_alignLeft="@+id/meeting_ll_end"
+                android:layout_marginStart="@dimen/dp_4"
+                android:layout_marginBottom="@dimen/dp_4"
+                android:background="@drawable/pop_fun_bg"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_5"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:id="@+id/meeting_tv_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/meeting_fun_selector"
+                    android:orientation="horizontal"
+                    android:padding="6dp"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/meeting_icon_screen_layout" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/picture_layout"
+                        android:textColor="@color/c2"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/meeting_tv_qh"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/meeting_fun_selector"
+                    android:orientation="horizontal"
+                    android:padding="6dp"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:src="@drawable/meeting_icon_chang_camera_" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/change_camera"
+                        android:textColor="@color/c2"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/meeting_ll_left_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/meeting_fun_selector"
+                    android:orientation="horizontal"
+                    android:padding="6dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/meeting_icon_pip" />
+
+                    <TextView
+                        android:id="@+id/meeting_pip_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/open_hzh"
+                        android:textColor="@color/c2"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/meeting_tv_yq"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/meeting_fun_selector"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:src="@drawable/meeting_icon_summary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/meet_point"
+                        android:textColor="@color/c2"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/meeting_tv_rw"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/meeting_fun_selector"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/meeting_icon_task" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:text="@string/meet_task"
+                        android:textColor="@color/c2"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/meeting_ll_end"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/dp_72"
+                android:layout_marginEnd="@dimen/dp_72"
+                android:background="@drawable/meeting_toolbar_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/meeting_tv_fs"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/meeting_tv_fs_image"
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/meeting_more" />
+
+                    <TextView
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/more" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/meeting_tv_ry"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/meeting_manage_iv"
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/meeting_gl" />
+
+                    <TextView
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/meet_manager" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/meeting_share_some"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/meet_share_icon"
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/shareicon" />
+
+                    <TextView
+                        android:id="@+id/sharepositiontext"
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/share" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/meeting_ll_invite_3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/invite_iv"
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/meeting_icon_invitation" />
+
+                    <TextView
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/invitation_uesr" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/meeting_recoder"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/meeting_recoder_imageview"
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/video_record_stop" />
+
+                    <TextView
+                        android:id="@+id/meeting_recoder_textview"
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/activity_meeting_usb_record_close" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/meeting_ll_camera"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+
+                    <ImageView
+                        android:id="@+id/camera_iv"
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/meeting_icon_camera_open" />
+
+                    <TextView
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/camera" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/meeting_show_hands"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/show_hands_icon"
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/meeting_show_handup" />
+
+                    <TextView
+                        android:id="@+id/show_hands_text"
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/ask_speech" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/meeting_tv_gf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/meeting_tv_gf_image"
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/meeting_ysq" />
+
+                    <TextView
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/voice_out" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/meeting_tv_jy"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/meeting_tv_jy_image"
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/meeting_jingyin" />
+
+                    <TextView
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/voice_0" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/meeting_tv_gd_ll"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/meeting_activity_bottom_layout_iamge_style"
+                        android:src="@drawable/meeting_hangup_selector" />
+
+                    <TextView
+                        style="@style/meeting_activity_bottom_layout_text_style"
+                        android:text="@string/hang_up_meeting_text" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <!--</LinearLayout>-->
+
+
+            <!--兼容其他厂家控件-->
+            <ImageButton
+                android:id="@+id/meeting_tv_gd"
+                android:layout_width="1px"
+                android:layout_height="1px"
+                android:background="@null"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/meeting_ll_left_1"
+                android:layout_width="1px"
+                android:layout_height="1px"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/meeting_ll_left_3"
+                android:layout_width="1px"
+                android:layout_height="1px"
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/meeting_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="33dp"
+                android:layout_marginTop="32dp"
+                android:textColor="#EA002B"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="72dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/cloud_class_details_background"
+                android:orientation="horizontal"
+                android:paddingLeft="42dp">
+                <Button
+                    android:id="@+id/cloud_class_share_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:text="共享"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <ImageView
+                    android:id="@+id/cloud_class_exit_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/sp_icon_switch_pre" />
+
+                <ImageView
+                    android:id="@+id/cloud_class_sun_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:src="@mipmap/sp_icon_microphone_small_default" />
+
+                <ImageView
+                    android:id="@+id/cloud_class_camera_open_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:src="@mipmap/sp_icon_camera_default" />
+
+                <ImageView
+                    android:id="@+id/cloud_class_camera_change_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/record_background_selector" />
+                <ImageView
+                    android:id="@+id/cloud_class_board_rel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/sp_icon_qianbi_qwer"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/meeting_ll_ends"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/cloud_class_go_to_magic"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="2"
+                android:background="#52000000" />
+
+            <RelativeLayout
+                android:id="@+id/cloud_class_grade_rel"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.2"
+                android:background="#52000000"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/meeting_class_background"
+                    android:gravity="center"
+                    android:text="切换"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.2"
+                android:background="#52000000"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/cloud_class_finish_tv"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/meeting_class_background"
+                    android:gravity="center"
+                    android:text="下课"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/cloud_class_go_to_view_pager"
+            android:layout_width="300dp"
+            android:layout_height="match_parent" />
+
+
+        <RelativeLayout
+            android:layout_width="137dp"
+            android:layout_height="64dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="34dp"
+            android:layout_marginBottom="93dp"
+            android:background="#00000000"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/cloud_class_details_edit_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/sp_icon_bb_a_pre" />
+
+            <View
+                android:id="@+id/cloud_class_details_line"
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/cloud_class_details_edit_iv"
+                android:background="#A4ADC8" />
+
+            <ImageView
+                android:id="@+id/cloud_class_details_edit_text_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/cloud_class_details_line"
+                android:src="@mipmap/sp_icon_bb_b_default" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/cloud_class_go_to_back_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/my_icon_return" />
+
+    <LinearLayout
+        android:id="@+id/meeting_ll_mid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_4"
+        android:background="@drawable/pop_fun_bg"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/meeting_ll_mid_auto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/fpauto"
+
+            />
+
+        <ImageView
+            android:id="@+id/meeting_ll_mid_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/fp1"
+
+            />
+
+        <ImageView
+            android:id="@+id/meeting_ll_mid_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/fp7_1" />
+
+        <ImageView
+            android:id="@+id/meeting_ll_mid_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/fp8_2" />
+
+        <ImageView
+            android:id="@+id/meeting_ll_mid_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/fp12_1" />
+
+        <ImageView
+            android:id="@+id/meeting_ll_mid_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/fp8"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/meeting_ll_mid_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/fp10"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="91dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:paddingLeft="22dp"
+        android:paddingRight="21dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/cloud_class_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#E02020"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="全体视听"
+                android:textColor="#0F2043"
+                android:textSize="11sp" />
+
+            <ToggleButton
+                android:id="@+id/toggle_button_view_1"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:drawableRight="@drawable/toggle_button_background"
+                android:gravity="center"
+                android:textOff=""
+                android:textOn="" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="全体开麦"
+                android:textColor="#0F2043"
+                android:textSize="11sp" />
+
+            <ToggleButton
+                android:id="@+id/toggle_button_view_2"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:drawableRight="@drawable/toggle_button_background"
+                android:gravity="center"
+                android:textOff=""
+                android:textOn="" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="全体开视频"
+                android:textColor="#0F2043"
+                android:textSize="11sp" />
+
+            <ToggleButton
+                android:id="@+id/toggle_button_view_3"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:drawableRight="@drawable/toggle_button_background"
+                android:gravity="center"
+                android:textOff=""
+                android:textOn="" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
+

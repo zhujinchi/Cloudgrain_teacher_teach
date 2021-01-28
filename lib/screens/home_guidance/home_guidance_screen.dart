@@ -1,4 +1,6 @@
+import 'package:Cloudgrain_teacher_teach/data/User.dart';
 import 'package:Cloudgrain_teacher_teach/screens/home_guidance/guidance_lineChart.dart';
+import 'package:Cloudgrain_teacher_teach/screens/home_guidance/home_finishedHomeWork_screen.dart';
 import 'package:Cloudgrain_teacher_teach/widgets/studyChart/home_studyBoard.dart';
 import 'package:Cloudgrain_teacher_teach/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -73,18 +75,7 @@ class _HomeGuidanceScreenState extends State<HomeGuidanceScreen>
             Padding(
               padding: EdgeInsets.only(left: 442.w, top: 102.w),
               child: Text(
-                '晚上好！肖老师',
-                style: TextStyle(
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'PingFangSC-Semibold'),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 442.w, top: 102.w),
-              child: Text(
-                '晚上好！肖老师',
+                '晚上好！' + User.shared().actualName,
                 style: TextStyle(
                     color: Color.fromRGBO(255, 255, 255, 1),
                     fontSize: 16.sp,
@@ -103,25 +94,25 @@ class _HomeGuidanceScreenState extends State<HomeGuidanceScreen>
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 542.w, top: 142.w),
-              child: Text(
-                '80',
-                style: TextStyle(
-                    color: Color.fromRGBO(58, 119, 101, 1),
-                    fontSize: 30.sp,
-                    fontFamily: 'Helvetica'),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 580.w, top: 144.w),
-              child: Text(
-                '元/小时',
-                style: TextStyle(
-                    color: Color.fromRGBO(15, 32, 67, 1),
-                    fontSize: 15.sp,
-                    fontFamily: 'PingFangSC-Regular'),
-              ),
-            ),
+                padding: EdgeInsets.only(left: 542.w, top: 142.w),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      User.shared().price.toString(),
+                      style: TextStyle(
+                          color: Color.fromRGBO(58, 119, 101, 1),
+                          fontSize: 30.sp,
+                          fontFamily: 'Helvetica'),
+                    ),
+                    Text(
+                      '元/小时',
+                      style: TextStyle(
+                          color: Color.fromRGBO(15, 32, 67, 1),
+                          fontSize: 15.sp,
+                          fontFamily: 'PingFangSC-Regular'),
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
@@ -131,38 +122,43 @@ class _HomeGuidanceScreenState extends State<HomeGuidanceScreen>
   SliverToBoxAdapter _buildHomeWorkerSet() {
     return SliverToBoxAdapter(
       child: Container(
-        width: 1024.w,
-        height: 93.w,
-        color: Colors.white,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(left: 205.w, top: 5.w),
-              width: 541.w,
-              height: 88.w,
-              padding: EdgeInsets.only(top: 5.w),
-              child: Image.asset(
-                'assets/images/home_pgzy_entrance@3x.png',
-                width: 541.w,
-                height: 88.w,
-                fit: BoxFit.fitWidth,
-              ),
+          width: 1024.w,
+          height: 93.w,
+          color: Colors.white,
+          child: InkWell(
+            onTap: () {
+              Navigator.of(context).push(CupertinoPageRoute(
+                  builder: (context) => FinishedHomeWorkScreen()));
+            },
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(left: 205.w, top: 5.w),
+                  width: 541.w,
+                  height: 88.w,
+                  padding: EdgeInsets.only(top: 5.w),
+                  child: Image.asset(
+                    'assets/images/home_pgzy_entrance@3x.png',
+                    width: 541.w,
+                    height: 88.w,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 219.w, top: 46.w),
+                  child: Text(
+                    '批改作业',
+                    style: TextStyle(
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'PingFangSC-Semibold'),
+                  ),
+                )
+                //)
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 219.w, top: 46.w),
-              child: Text(
-                '批改作业',
-                style: TextStyle(
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'PingFangSC-Semibold'),
-              ),
-            )
-            //)
-          ],
-        ),
-      ),
+          )),
     );
   }
 
